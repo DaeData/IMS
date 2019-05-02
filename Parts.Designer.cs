@@ -137,6 +137,7 @@
             // 
             // tbPartID
             // 
+            this.tbPartID.AcceptsTab = true;
             this.tbPartID.Location = new System.Drawing.Point(144, 141);
             this.tbPartID.Name = "tbPartID";
             this.tbPartID.ReadOnly = true;
@@ -145,14 +146,16 @@
             // 
             // tbPartCost
             // 
+            this.tbPartCost.AcceptsTab = true;
             this.tbPartCost.Location = new System.Drawing.Point(144, 255);
             this.tbPartCost.Name = "tbPartCost";
             this.tbPartCost.Size = new System.Drawing.Size(100, 25);
-            this.tbPartCost.TabIndex = 9;
+            this.tbPartCost.TabIndex = 11;
             this.tbPartCost.WordWrap = false;
             // 
             // tbPartInvenory
             // 
+            this.tbPartInvenory.AcceptsTab = true;
             this.tbPartInvenory.Location = new System.Drawing.Point(144, 217);
             this.tbPartInvenory.Name = "tbPartInvenory";
             this.tbPartInvenory.Size = new System.Drawing.Size(100, 25);
@@ -161,14 +164,16 @@
             // 
             // tbPartName
             // 
+            this.tbPartName.AcceptsTab = true;
             this.tbPartName.Location = new System.Drawing.Point(144, 180);
             this.tbPartName.Name = "tbPartName";
             this.tbPartName.Size = new System.Drawing.Size(100, 25);
-            this.tbPartName.TabIndex = 11;
+            this.tbPartName.TabIndex = 9;
             this.tbPartName.WordWrap = false;
             // 
             // tbPartMax
             // 
+            this.tbPartMax.AcceptsTab = true;
             this.tbPartMax.Location = new System.Drawing.Point(144, 296);
             this.tbPartMax.Name = "tbPartMax";
             this.tbPartMax.Size = new System.Drawing.Size(100, 25);
@@ -187,10 +192,11 @@
             // 
             // tbPartMin
             // 
+            this.tbPartMin.AcceptsTab = true;
             this.tbPartMin.Location = new System.Drawing.Point(348, 292);
             this.tbPartMin.Name = "tbPartMin";
             this.tbPartMin.Size = new System.Drawing.Size(100, 25);
-            this.tbPartMin.TabIndex = 14;
+            this.tbPartMin.TabIndex = 13;
             this.tbPartMin.WordWrap = false;
             // 
             // lblPartMachineID
@@ -204,10 +210,11 @@
             // 
             // tbPartMachineId
             // 
+            this.tbPartMachineId.AcceptsTab = true;
             this.tbPartMachineId.Location = new System.Drawing.Point(159, 359);
             this.tbPartMachineId.Name = "tbPartMachineId";
             this.tbPartMachineId.Size = new System.Drawing.Size(100, 25);
-            this.tbPartMachineId.TabIndex = 16;
+            this.tbPartMachineId.TabIndex = 14;
             this.tbPartMachineId.WordWrap = false;
             // 
             // partSave

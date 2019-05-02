@@ -17,8 +17,8 @@ namespace Inventory_Management_System_KKellerman
 
         public static BindingList<Part> AllParts { get { return allparts; } set { allparts = value; } }
 
-        public Inventory(int partID, string name, int inStock, decimal price, int min, int max)
-            : base(partID, name, inStock, price, min, max)
+        public Inventory(int productID, string name, int inStock, decimal price, int min, int max)
+            : base(productID, name, inStock, price, min, max)
         {
 
         }
@@ -29,7 +29,6 @@ namespace Inventory_Management_System_KKellerman
         {
             Products.Add(product as Product);
 
-            
         }
 
         public bool RemoveProduct(int productID)
@@ -61,11 +60,16 @@ namespace Inventory_Management_System_KKellerman
                 {
                     return product;
                 }
-
+                else
+                {
+                    return null;
+                }
             }
             return null;
 
+
         }
+
 
         public static void UpdateProduct(int productID, Product changeProduct)
         {

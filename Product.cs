@@ -20,6 +20,9 @@ namespace Inventory_Management_System_KKellerman
         //private decimal price;
         //private int min;
         //private int max;
+        //private int partID;
+
+        
 
         //public for members
         public int ProductID { get; set; }
@@ -41,41 +44,45 @@ namespace Inventory_Management_System_KKellerman
 
         public void  AddAssociatedPart(Part part)
         {
-
+            AssociatedParts.Add(part as Part);
 
         }
 
         public bool RemoveAssociatedPart(int partID)
         {
+            bool partRemoved = false;
             foreach (Part part in AssociatedParts)
             {
                 if (part.PartID == partID)
                 {
                     AssociatedParts.Remove(part);
-                    return true;
-                      
+                    partRemoved = true;
                 }
                 else
                 {
-                    return false;
+                    partRemoved = false;
                 }
+
             }
-            return true;
+            return partRemoved;
+            
         }
 
         public static Part LookupAssociatedPart(int partID)
+
         {
+
             foreach (Part part in AssociatedParts)
             {
+
                 if (partID == part.PartID)
                 {
                     return part;
+
                 }
-              
-               
             }
             return null;
-
+      
 
         }
         
@@ -87,9 +94,3 @@ namespace Inventory_Management_System_KKellerman
     }
 }
 
-namespace DgAssocProd_CellContentClick
-{
-    class DataSource
-    {
-    }
-}

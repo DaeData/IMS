@@ -263,7 +263,7 @@
             this.tbAllSearch.Size = new System.Drawing.Size(203, 25);
             this.tbAllSearch.TabIndex = 16;
             this.tbAllSearch.WordWrap = false;
-            this.tbAllSearch.TextChanged += new System.EventHandler(this.TbAllSearch_TextChanged);
+            //this.tbAllSearch.TextChanged += new System.EventHandler(this.TbAllSearch_TextChanged);
             // 
             // dgAssocProd
             // 

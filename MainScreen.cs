@@ -98,6 +98,21 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
+        private void BtnPartSearch_Click(object sender, EventArgs e)
+        {
+            dgPartMain.ClearSelection();
+            int value = Convert.ToInt16(tbPartSearch.Text);
+            Inventory.LookupPart(value);
+            dgPartMain.Rows[value].Selected = true;
+           
+        }
 
+        private void BtnProductSearch_Click(object sender, EventArgs e)
+        {
+            dgProductMain.ClearSelection();
+            int value = Convert.ToInt16(tbPartSearch.Text);
+            Inventory.LookupProduct(value);
+            dgProductMain.Rows[value].Selected = true;
+        }
     }
 }

@@ -12,12 +12,22 @@ namespace Inventory_Management_System_KKellerman
 {
     public partial class Products : Form
     {
+        private static BindingList<Part> allParts = new BindingList<Part>();
+        private static BindingList<Product> associatedParts = new BindingList<Product>();
+        private static BindingSource allPartsBinding = new BindingSource();
+        private static BindingSource assocPartsBinding = new BindingSource();
         public Products()
         {
+
             InitializeComponent();
             //Inventory.DataPop();
 
-            dgAllParts.DataSource = Inventory.AllParts;
+            //dgAllParts.DataSource = Inventory.AllParts;
+            allPartsBinding.DataSource = Inventory.AllParts;
+            dgAllParts.DataSource = allPartsBinding;
+
+           
+
 
             dgAllParts.Columns["PartID"].HeaderText = "Part ID";
             dgAllParts.Columns["Name"].HeaderText = "Name";
@@ -27,18 +37,22 @@ namespace Inventory_Management_System_KKellerman
             dgAllParts.Columns["Max"].HeaderText = "Max";
 
 
-            
 
-            //dgAssocProd.Columns["ProductID"].HeaderText = "Product ID";
-            //dgAssocProd.Columns["Name"].HeaderText = "Name";
-            //dgAssocProd.Columns["InStock"].HeaderText = "Inventory";
-            //dgAssocProd.Columns["Price"].HeaderText = "Price";
-            //dgAssocProd.Columns["Min"].HeaderText = "Min";
-            //dgAssocProd.Columns["Max"].HeaderText = "Max";
+            //dgAssocProd.DataSource = Product.AssociatedParts;
+            assocPartsBinding.DataSource = Product.AssociatedParts;
+            dgAssocProd.DataSource = assocPartsBinding;
+
+
+            dgAssocProd.Columns["PartID"].HeaderText = "Part ID";
+            dgAssocProd.Columns["Name"].HeaderText = "Name";
+            dgAssocProd.Columns["InStock"].HeaderText = "Inventory";
+            dgAssocProd.Columns["Price"].HeaderText = "Price";
+            dgAssocProd.Columns["Min"].HeaderText = "Min";
+            dgAssocProd.Columns["Max"].HeaderText = "Max";
 
         }
 
- 
+
         private void BtnProductCancel_Click(object sender, EventArgs e)
         {
             Hide();
@@ -50,7 +64,7 @@ namespace Inventory_Management_System_KKellerman
 
         private void DgAllParts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
 
@@ -60,35 +74,33 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
-        private void TbAllSearch_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
+ 
 
         private void BtnAllSearch_Click(object sender, EventArgs e)
         {
-           // int sValue = int.Parse(tbAllSearch.Text);
-           // Part value = Product.LookupAssociatedPart(sValue);
-
-           //foreach(DataGridViewRow row in dgAllParts.Rows)
-           // {
-           //     Part part = (Part)row.DataBoundItem;
-           //     if(part.PartID == value.PartID)
-           //     {
-           //         dgAllParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-           //         row.Selected = true;
-                    
-           //     }
-           // }
-
            
+            dgAllParts.ClearSelection();
+            
+            int value = Convert.ToInt16(tbAllSearch.Text);
+            Product.LookupAssociatedPart(value);
+            dgAllParts.Rows[value].Selected = true;
+
+
         }
+                
+
 
         private void BtnCandidateAdd_Click(object sender, EventArgs e)
         {
             if(dgAllParts.SelectedRows.Count == 0)
             {
                 return;
+            }
+            else
+            {
+                Part addPart = (Part)dgAllParts.CurrentRow.DataBoundItem;
+                Product.AssociatedParts.Add(addPart);
+
             }
   
 
@@ -99,22 +111,9 @@ namespace Inventory_Management_System_KKellerman
             Inventory.AddProduct(new Product((Inventory.Products.Count + 1), tbProductName.Text, int.Parse(tbProductInv.Text), decimal.Parse(tbProductPrice.Text), int.Parse(tbProductMin.Text), int.Parse(tbProductMax.Text)));
             this.Hide();
             MainScreen mainScreen = new MainScreen();
-            _ = mainScreen.ShowDialog();
+            mainScreen.Show();
         }
-        //if (dgAllParts.SelectedRows.Count == 0)
-        //    return;
 
-        //foreach(DataGridViewRow row in dgAllParts.SelectedRows)
-        //{
-        //    var selectedRow = (row.DataBoundItem);
-        //    dgAssocProd.DataSource = selectedRow;
-        //}
-        //dgAssocProd.Columns["ProductID"].HeaderText = "Product ID";
-        //dgAssocProd.Columns["Name"].HeaderText = "Name";
-        //dgAssocProd.Columns["InStock"].HeaderText = "Inventory";
-        //dgAssocProd.Columns["Price"].HeaderText = "Price";
-        //dgAssocProd.Columns["Min"].HeaderText = "Min";
-        //dgAssocProd.Columns["Max"].HeaderText = "Max";
 
     }
 }
