@@ -12,19 +12,9 @@ namespace Inventory_Management_System_KKellerman
         private static BindingList<Part> associatedParts = new BindingList<Part>();
         public static BindingList<Part> AssociatedParts { get { return associatedParts; } set { associatedParts = value; } }
 
-        // private for class use
-
-        //private int productID;
-        //private string name;
-        //private int inStock;
-        //private decimal price;
-        //private int min;
-        //private int max;
-        //private int partID;
 
         
 
-        //public for members
         public int ProductID { get; set; }
         public string Name { get; set; }
         public int InStock { get; set; }

@@ -15,11 +15,12 @@ namespace Inventory_Management_System_KKellerman
         private static BindingList<Part> allParts = new BindingList<Part>();
         private static BindingList<Product> associatedParts = new BindingList<Product>();
         private static BindingSource allPartsBinding = new BindingSource();
-        private static BindingSource assocPartsBinding = new BindingSource();
+        private BindingSource assocPartsBinding = new BindingSource();
         public Products()
         {
 
             InitializeComponent();
+            
             //Inventory.DataPop();
 
             //dgAllParts.DataSource = Inventory.AllParts;
@@ -68,27 +69,31 @@ namespace Inventory_Management_System_KKellerman
         }
 
 
-
         private void BtnAssocPartDel_Click(object sender, EventArgs e)
         {
 
         }
 
  
-
         private void BtnAllSearch_Click(object sender, EventArgs e)
         {
            
             dgAllParts.ClearSelection();
-            
+                         
             int value = Convert.ToInt16(tbAllSearch.Text);
             Product.LookupAssociatedPart(value);
-            dgAllParts.Rows[value].Selected = true;
+
+            foreach (DataGridViewRow row in dgAllParts.Rows)
+            {
+                if (Convert.ToUInt16(row.Cells["partID"].Value) == value)
+                {
+                    row.Selected = true;
+                }
+            }
 
 
         }
                 
-
 
         private void BtnCandidateAdd_Click(object sender, EventArgs e)
         {

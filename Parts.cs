@@ -67,11 +67,14 @@ namespace Inventory_Management_System_KKellerman
             if (rbOutsourced.Checked == true)
             {
                 Inventory.AddPart(new Outsourced((Inventory.AllParts.Count + 1), tbPartName.Text, int.Parse(tbPartInvenory.Text), decimal.Parse(tbPartCost.Text), int.Parse(tbPartMin.Text), int.Parse(tbPartMax.Text), tbPartMachineId.Text));
+               
             }
             else if (rbInHouse.Checked == true)
             {
                 Inventory.AddPart(new InHouse((Inventory.AllParts.Count + 1), tbPartName.Text, int.Parse(tbPartInvenory.Text), decimal.Parse(tbPartCost.Text), int.Parse(tbPartMin.Text), int.Parse(tbPartMax.Text), int.Parse(tbPartMachineId.Text)));
             }
+            //Inventory.AllParts.ResetBindings();
+            
             Hide();
             MainScreen mainScreen = new MainScreen();
             mainScreen.Show();
