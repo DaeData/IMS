@@ -13,8 +13,6 @@ namespace Inventory_Management_System_KKellerman
         public static BindingList<Part> AssociatedParts { get { return associatedParts; } set { associatedParts = value; } }
 
 
-        
-
         public int ProductID { get; set; }
         public string Name { get; set; }
         public int InStock { get; set; }

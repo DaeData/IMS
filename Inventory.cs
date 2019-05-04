@@ -27,33 +27,30 @@ namespace Inventory_Management_System_KKellerman
 
         public static void AddProduct(Product product)
         {
-            Products.Add(product as Product);
+            
+            products.Add(product);
 
         }
 
         public bool RemoveProduct(int productID)
         {
-            foreach (Product product in Products)
+            Product product = LookupProduct(productID);
+            if(product == null)
             {
-                if (productID == product.ProductID)
-                {
-                    Products.Remove(product);
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            return true;
+            else
+            {
+                products.Remove(product);
+                return true;
+            }
+     
         }
 
 
         public static Product LookupProduct(int productID)
 
         {
-
             foreach (Product product in Products)
             {
                 if (product.ProductID == productID)
@@ -93,24 +90,25 @@ namespace Inventory_Management_System_KKellerman
 
         public static void AddPart(Part part)
         {
-            AllParts.Add(part as Part);
+            
+            allparts.Add(part);
         }
 
         public bool DeletePart(int partID)
         {
-            
-            foreach (Part part in AllParts)
+            Part part = LookupPart(partID);
+            if (part == null)
             {
-                if (partID == part.PartID)
-
-                {
-                    AllParts.Remove(part);
-
-                    return true;
-                }
-              
+                return false;
             }
-            return true;
+            else
+            {
+                allparts.Remove(part);
+                return true;
+
+            }
+
+
         }
 
         public static Part LookupPart(int partID)

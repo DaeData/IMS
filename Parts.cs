@@ -53,8 +53,6 @@ namespace Inventory_Management_System_KKellerman
 
 
 
-
-
         private void PartCancel_Click(object sender, EventArgs e)
         {
             Hide();

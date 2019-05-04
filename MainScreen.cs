@@ -80,12 +80,33 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartModify_Click(object sender, EventArgs e)
         {
-            Hide();
+            foreach(DataGridViewRow row in dgPartMain.Rows)
+            {
+                if (row.Selected == true)
+                {
+                   
+                    Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row to Modify");
+                }
+
+            }
+           
+
         }
 
         private void BtnPartDelete_Click(object sender, EventArgs e)
         {
-           
+           foreach(DataGridViewRow row in dgPartMain.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    
+                }
+            }
+
         }
 
         private void DgPartMain_CellContentClick(object sender, DataGridViewCellEventArgs e)
