@@ -32,7 +32,7 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
-        public bool RemoveProduct(int productID)
+        public static bool RemoveProduct(int productID)
         {
             Product product = LookupProduct(productID);
             if(product == null)
@@ -94,7 +94,7 @@ namespace Inventory_Management_System_KKellerman
             allparts.Add(part);
         }
 
-        public bool DeletePart(int partID)
+        public static bool DeletePart(int partID)
         {
             Part part = LookupPart(partID);
             if (part == null)
@@ -127,6 +127,7 @@ namespace Inventory_Management_System_KKellerman
 
         public static Part UpdatePart(int partID, Part changePart)
         {
+
             foreach (Part part in AllParts)
             {
                 if (partID == part.PartID)
