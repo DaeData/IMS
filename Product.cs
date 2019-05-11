@@ -32,18 +32,18 @@ namespace Inventory_Management_System_KKellerman
 
         public void  AddAssociatedPart(Part part)
         {
-            AssociatedParts.Add(part as Part);
+            associatedParts.Add(part);
 
         }
 
         public bool RemoveAssociatedPart(int partID)
         {
             bool partRemoved = false;
-            foreach (Part part in AssociatedParts)
+            foreach (Part part in associatedParts)
             {
                 if (part.PartID == partID)
                 {
-                    AssociatedParts.Remove(part);
+                    associatedParts.Remove(part);
                     partRemoved = true;
                 }
                 else
@@ -60,7 +60,7 @@ namespace Inventory_Management_System_KKellerman
 
         {
 
-            foreach (Part part in AssociatedParts)
+            foreach (Part part in associatedParts)
             {
 
                 if (partID == part.PartID)

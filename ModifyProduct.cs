@@ -15,12 +15,16 @@ namespace Inventory_Management_System_KKellerman
         public ModifyProduct()
         {
             InitializeComponent();
+            
 
             dgModProdAll.DataSource = Inventory.AllParts;
-
-
             dgModProdAssoc.DataSource = Product.AssociatedParts;
         }
+
+
+   
+
+
 
         private void TbModName_TextChanged(object sender, EventArgs e)
         {

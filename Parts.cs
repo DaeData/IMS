@@ -52,7 +52,6 @@ namespace Inventory_Management_System_KKellerman
         }
 
 
-
         private void PartCancel_Click(object sender, EventArgs e)
         {
             Hide();
@@ -71,7 +70,7 @@ namespace Inventory_Management_System_KKellerman
             {
                 Inventory.AddPart(new InHouse((Inventory.AllParts.Count + 1), tbPartName.Text, int.Parse(tbPartInvenory.Text), decimal.Parse(tbPartCost.Text), int.Parse(tbPartMin.Text), int.Parse(tbPartMax.Text), int.Parse(tbPartMachineId.Text)));
             }
-            //Inventory.AllParts.ResetBindings();
+
             
             Hide();
             MainScreen mainScreen = new MainScreen();

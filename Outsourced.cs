@@ -8,15 +8,34 @@ namespace Inventory_Management_System_KKellerman
 {
     public class Outsourced : Part
     {
-        private string companyname;
 
-        public Outsourced(int partID, string name, int inStock, decimal price, int min, int max, string companyname)
+
+        
+
+        private string companyName;
+
+        public string CompanyName { get { return companyName; } set { companyName = value; } }
+
+        
+
+
+        public Outsourced(int partID, string name, int inStock, decimal price, int min, int max)
             : base(partID, name, inStock, price, min, max)
         {
-            CompanyName = companyname;
+          
+           
         }
 
-        public string CompanyName { get; set; }
+        public Outsourced(int partID, string name, int inStock, decimal price, int min, int max, string companyName)
+            : base(partID, name, inStock, price, min, max)
+        {
+            CompanyName = companyName;
+
+        }
+
+
+
+
 
 
 

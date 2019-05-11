@@ -25,6 +25,7 @@ namespace Inventory_Management_System_KKellerman
 
 
 
+
         public static void AddProduct(Product product)
         {
             
@@ -70,21 +71,22 @@ namespace Inventory_Management_System_KKellerman
 
         public static void UpdateProduct(int productID, Product changeProduct)
         {
+            LookupProduct(productID);
+            RemoveProduct(productID);
+
+            Product product = changeProduct;
+
+            product.ProductID = changeProduct.ProductID;
+            product.Name = changeProduct.Name;
+            product.InStock = changeProduct.InStock;
+            product.Price = changeProduct.Price;
+            product.Min = changeProduct.Min;
+            product.Max = changeProduct.Max;
+
+            AddProduct(changeProduct);
 
 
-        foreach (Product product in Products)
-            {
-                if (product.ProductID == productID)
-                {
-                    product.Name = changeProduct.Name;
-                    product.InStock = changeProduct.InStock;
-                    product.Price = changeProduct.Price;
-                    product.Min = changeProduct.Min;
-                    product.Max = changeProduct.Max;
 
-                }
-            }   
-           
 
         }
 
@@ -113,7 +115,7 @@ namespace Inventory_Management_System_KKellerman
 
         public static Part LookupPart(int partID)
         {
-            foreach (Part part in AllParts)
+            foreach (Part part in allparts)
             {
                 if (partID == part.PartID)
                 {
@@ -125,21 +127,24 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
-        public static Part UpdatePart(int partID, Part changePart)
+        public static void UpdatePart(int partID, Part changePart)
         {
+            LookupPart(partID);
+            DeletePart(partID);
+           
+            Part part = changePart;
 
-            foreach (Part part in AllParts)
-            {
-                if (partID == part.PartID)
-                {
-                    part.Name = changePart.Name;
-                    part.InStock = changePart.InStock;
-                    part.Price = changePart.Price;
-                    part.Min = changePart.Min;
-                    part.Max = changePart.Max;
-                }
-            }
-            return null;
+            part.PartID = changePart.PartID;
+            part.Name = changePart.Name;
+            part.InStock = changePart.InStock;
+            part.Price = changePart.Price;
+            part.Min = changePart.Min;
+            part.Max = changePart.Max;
+
+            AddPart(changePart);
+
+
+
 
         }
 

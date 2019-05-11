@@ -14,7 +14,9 @@ namespace Inventory_Management_System_KKellerman
     {
         public MainScreen()
         {
+            
             InitializeComponent();
+            
 
 
 
@@ -28,6 +30,7 @@ namespace Inventory_Management_System_KKellerman
             dgPartMain.Columns["Max"].HeaderText = "Max";
 
 
+
             dgProductMain.DataSource = Inventory.Products;
 
             dgProductMain.Columns["ProductID"].HeaderText = "Product ID";
@@ -39,8 +42,7 @@ namespace Inventory_Management_System_KKellerman
         }
 
 
-      
-
+ 
 
         private void Exit_Click(object sender, EventArgs e)
         {
@@ -59,10 +61,7 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProductModify_Click(object sender, EventArgs e)
         {
-            Hide();
-            ModifyProduct modprod = new ModifyProduct();
-            modprod.Show();
-            
+
 
         }
 
@@ -93,9 +92,11 @@ namespace Inventory_Management_System_KKellerman
         {
             Hide();
             ModifyPart modpart = new ModifyPart();
+            int rowIndex = dgPartMain.CurrentRow.Index;
+            Part part = Inventory.LookupPart(rowIndex);
+            modpart.FillBoxes(part);
             modpart.Show();
 
-          
         }
            
 
@@ -123,7 +124,7 @@ namespace Inventory_Management_System_KKellerman
         private void BtnPartSearch_Click(object sender, EventArgs e)
         {
             dgPartMain.ClearSelection();
-            int value = Convert.ToInt16(tbPartSearch.Text);
+            int value = Convert.ToInt32(tbPartSearch.Text);
             Inventory.LookupPart(value);
             dgPartMain.Rows[value].Selected = true;
            
@@ -132,7 +133,7 @@ namespace Inventory_Management_System_KKellerman
         private void BtnProductSearch_Click(object sender, EventArgs e)
         {
             dgProductMain.ClearSelection();
-            int value = Convert.ToInt16(tbPartSearch.Text);
+            int value = Convert.ToInt32(tbPartSearch.Text);
             Inventory.LookupProduct(value);
             dgProductMain.Rows[value].Selected = true;
         }
