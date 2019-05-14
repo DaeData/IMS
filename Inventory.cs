@@ -17,10 +17,27 @@ namespace Inventory_Management_System_KKellerman
 
         public static BindingList<Part> AllParts { get { return allparts; } set { allparts = value; } }
 
+
         public Inventory(int productID, string name, int inStock, decimal price, int min, int max)
             : base(productID, name, inStock, price, min, max)
         {
 
+        }
+
+        public static int prodCount = 0;
+        public static int partCount = 0;
+
+        public static int prodInc()
+        {
+
+            prodCount++;
+            return prodCount;
+        }
+
+        public static int partInc()
+        {
+            partCount++;
+            return partCount;
         }
 
 
@@ -30,6 +47,7 @@ namespace Inventory_Management_System_KKellerman
         {
             
             products.Add(product);
+
 
         }
 
@@ -52,18 +70,16 @@ namespace Inventory_Management_System_KKellerman
         public static Product LookupProduct(int productID)
 
         {
-            foreach (Product product in Products)
+            foreach (Product product in products)
             {
                 if (product.ProductID == productID)
                 {
                     return product;
                 }
-                else
-                {
-                    return null;
-                }
+                
             }
             return null;
+
 
 
         }

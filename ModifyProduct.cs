@@ -19,10 +19,22 @@ namespace Inventory_Management_System_KKellerman
 
             dgModProdAll.DataSource = Inventory.AllParts;
             dgModProdAssoc.DataSource = Product.AssociatedParts;
+
         }
 
 
-   
+
+        internal void FillProd(Product prodPart)
+            
+        {
+            tbModId.Text = prodPart.ProductID.ToString();
+            tbModName.Text = prodPart.Name;
+            tbModInv.Text = prodPart.InStock.ToString();
+            tbModPrice.Text = prodPart.Price.ToString();
+            tbModMax.Text = prodPart.Max.ToString();
+            tbModMin.Text = prodPart.Min.ToString();
+            
+        }
 
 
 
@@ -72,12 +84,21 @@ namespace Inventory_Management_System_KKellerman
         }
 
         private void BtnModSave_Click(object sender, EventArgs e)
-        {
 
+        {
+            int changeProd = Convert.ToInt32(tbModId.Text);
+            Product product = (new Product(int.Parse(tbModId.Text), tbModName.Text, int.Parse(tbModInv.Text), decimal.Parse(tbModPrice.Text), int.Parse(tbModMin.Text), int.Parse(tbModMax.Text)));
+            Inventory.UpdateProduct(changeProd, product);
+            Hide();
+            MainScreen mainscreen = new MainScreen();
+            mainscreen.Show();
         }
 
         private void BtnModCancel_Click(object sender, EventArgs e)
         {
+            Hide();
+            MainScreen mainscreen = new MainScreen();
+            mainscreen.Show();
 
         }
 

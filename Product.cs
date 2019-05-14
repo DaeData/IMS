@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Inventory_Management_System_KKellerman
 {
-    class Product
+    class Product 
     {
+        
         private static BindingList<Part> associatedParts = new BindingList<Part>();
         public static BindingList<Part> AssociatedParts { get { return associatedParts; } set { associatedParts = value; } }
+
+
 
 
         public int ProductID { get; set; }
@@ -20,7 +23,12 @@ namespace Inventory_Management_System_KKellerman
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public Product (int productID, string name,  int inStock, decimal price, int min, int max)
+
+
+        public Product(int productID, string name, int inStock, decimal price, int min, int max)
+
+
+
         {
             ProductID = productID;
             Name = name;

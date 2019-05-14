@@ -52,6 +52,7 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProductAdd_Click(object sender, EventArgs e)
         {
+            
             Hide();
             Products prodForm = new Products();
             prodForm.ShowDialog();
@@ -61,6 +62,13 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProductModify_Click(object sender, EventArgs e)
         {
+            Hide();
+            
+            int rowIndex = dgProductMain.CurrentRow.Index;
+            Product product = Inventory.LookupProduct(rowIndex);
+            ModifyProduct modprod = new ModifyProduct();
+            modprod.FillProd(product);
+            modprod.Show();
 
 
         }

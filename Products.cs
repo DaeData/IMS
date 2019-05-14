@@ -21,9 +21,7 @@ namespace Inventory_Management_System_KKellerman
 
             InitializeComponent();
             
-            //Inventory.DataPop();
-
-            //dgAllParts.DataSource = Inventory.AllParts;
+            
             allPartsBinding.DataSource = Inventory.AllParts;
             dgAllParts.DataSource = allPartsBinding;
 
@@ -39,7 +37,7 @@ namespace Inventory_Management_System_KKellerman
 
 
 
-            //dgAssocProd.DataSource = Product.AssociatedParts;
+           
             assocPartsBinding.DataSource = Product.AssociatedParts;
             dgAssocProd.DataSource = assocPartsBinding;
 
@@ -113,7 +111,7 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProdSave_Click(object sender, EventArgs e)
         {
-            Inventory.AddProduct(new Product((Inventory.Products.Count + 1), tbProductName.Text, int.Parse(tbProductInv.Text), decimal.Parse(tbProductPrice.Text), int.Parse(tbProductMin.Text), int.Parse(tbProductMax.Text)));
+            Inventory.AddProduct(new Product((Inventory.prodInc()), tbProductName.Text, int.Parse(tbProductInv.Text), decimal.Parse(tbProductPrice.Text), int.Parse(tbProductMin.Text), int.Parse(tbProductMax.Text)));
             this.Hide();
             MainScreen mainScreen = new MainScreen();
             mainScreen.Show();
