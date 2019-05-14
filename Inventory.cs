@@ -24,8 +24,8 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
-        public static int prodCount = 0;
-        public static int partCount = 0;
+        public static int prodCount = -1;
+        public static int partCount = -1;
 
         public static int prodInc()
         {
