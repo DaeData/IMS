@@ -87,19 +87,19 @@ namespace Inventory_Management_System_KKellerman
 
         public static void UpdateProduct(int productID, Product changeProduct)
         {
-            LookupProduct(productID);
-            RemoveProduct(productID);
+            Product change = LookupProduct(productID);
 
-            Product product = changeProduct;
 
-            product.ProductID = changeProduct.ProductID;
-            product.Name = changeProduct.Name;
-            product.InStock = changeProduct.InStock;
-            product.Price = changeProduct.Price;
-            product.Min = changeProduct.Min;
-            product.Max = changeProduct.Max;
 
-            AddProduct(changeProduct);
+
+            change.ProductID = changeProduct.ProductID;
+            change.Name = changeProduct.Name;
+            change.InStock = changeProduct.InStock;
+            change.Price = changeProduct.Price;
+            change.Min = changeProduct.Min;
+            change.Max = changeProduct.Max;
+
+           
 
 
 
@@ -145,10 +145,7 @@ namespace Inventory_Management_System_KKellerman
 
         public static void UpdatePart(int partID, Part changePart)
         {
-            LookupPart(partID);
-            DeletePart(partID);
-           
-            Part part = changePart;
+            Part part = LookupPart(partID);
 
             part.PartID = changePart.PartID;
             part.Name = changePart.Name;
@@ -157,22 +154,20 @@ namespace Inventory_Management_System_KKellerman
             part.Min = changePart.Min;
             part.Max = changePart.Max;
 
-            AddPart(changePart);
-
-
-
 
         }
 
 
 
-     
 
 
 
-        
 
-       
+
+
+
+
+
 
 
 

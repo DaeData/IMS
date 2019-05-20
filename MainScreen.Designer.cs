@@ -99,6 +99,7 @@
             this.dgPartMain.RowTemplate.ReadOnly = true;
             this.dgPartMain.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgPartMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPartMain.ShowEditingIcon = false;
             this.dgPartMain.Size = new System.Drawing.Size(601, 233);
             this.dgPartMain.StandardTab = true;
             this.dgPartMain.TabIndex = 1;
@@ -325,8 +326,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.DataGridView dgPartMain;
-        private System.Windows.Forms.DataGridView dgProductMain;
         private System.Windows.Forms.Label lblPartMain;
         private System.Windows.Forms.Label lblProductsMain;
         private System.Windows.Forms.TextBox tbPartSearch;
@@ -340,6 +339,8 @@
         private System.Windows.Forms.Button btnProductModify;
         private System.Windows.Forms.Button btnProductDelete;
         private System.Windows.Forms.Button btnExit;
+        public System.Windows.Forms.DataGridView dgPartMain;
+        public System.Windows.Forms.DataGridView dgProductMain;
     }
 }
 

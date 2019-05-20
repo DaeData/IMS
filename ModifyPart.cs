@@ -15,11 +15,13 @@ namespace Inventory_Management_System_KKellerman
         public ModifyPart()
         {
             InitializeComponent();
+           
             
 
         }
+        
 
-        public  void FillBoxes (Part fillPart)
+        public void FillBoxes (Part fillPart)
         {
             tbModID.Text = fillPart.PartID.ToString();
             tbModName.Text = fillPart.Name;
@@ -43,17 +45,18 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
-
+      
 
 
         private void RbModInHouse_CheckedChanged(object sender, EventArgs e)
         {
-           
+
 
         }
 
         private void RbModOutsourced_CheckedChanged(object sender, EventArgs e)
         {
+
 
         }
         private void TbModID_TextChanged(object sender, EventArgs e)
@@ -91,29 +94,32 @@ namespace Inventory_Management_System_KKellerman
             int partChangeId = Convert.ToInt32(tbModID.Text);
 
 
-            if(rbModOutsourced.Checked == true)
+            if (rbModOutsourced.Checked == true)
             {
-               
-                Outsourced partChange = new Outsourced(int.Parse(tbModID.Text),tbModName.Text,int.Parse(tbModInv.Text),decimal.Parse(tbModCost.Text),int.Parse(tbModMin.Text),int.Parse(tbModMax.Text),tbModMachineID.Text);
+
+                Outsourced partChange = new Outsourced(int.Parse(tbModID.Text), tbModName.Text, int.Parse(tbModInv.Text), decimal.Parse(tbModCost.Text), int.Parse(tbModMin.Text), int.Parse(tbModMax.Text), tbModMachineID.Text);
                 Inventory.UpdatePart(partChangeId, partChange);
             }
-            else 
+            else
             {
                 InHouse partChange = new InHouse(int.Parse(tbModID.Text), tbModName.Text, int.Parse(tbModInv.Text), decimal.Parse(tbModCost.Text), int.Parse(tbModMin.Text), int.Parse(tbModMax.Text), int.Parse(tbModMachineID.Text));
                 Inventory.UpdatePart(partChangeId, partChange);
 
             }
+
+
             Hide();
             MainScreen mainscreen = new MainScreen();
-            mainscreen.Show();
+            mainscreen.ShowDialog();
 
         }
 
         private void BtnModCancel_Click(object sender, EventArgs e)
         {
+ 
             Hide();
             MainScreen mainscreen = new MainScreen();
-            mainscreen.Show();
+            mainscreen.ShowDialog();
         }
     }
 }

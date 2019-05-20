@@ -15,7 +15,7 @@ namespace Inventory_Management_System_KKellerman
 
 
 
-
+        
         public int ProductID { get; set; }
         public string Name { get; set; }
         public int InStock { get; set; }
@@ -24,9 +24,8 @@ namespace Inventory_Management_System_KKellerman
         public int Max { get; set; }
 
 
-
+        public Product() { }
         public Product(int productID, string name, int inStock, decimal price, int min, int max)
-
 
 
         {
@@ -38,29 +37,30 @@ namespace Inventory_Management_System_KKellerman
             Max = max;
         }
 
-        public void  AddAssociatedPart(Part part)
+        public static void  AddAssociatedPart(Part part)
         {
-            associatedParts.Add(part);
+            AssociatedParts.Add(part);
 
         }
 
-        public bool RemoveAssociatedPart(int partID)
+        public static bool RemoveAssociatedPart(int partID)
         {
-            bool partRemoved = false;
-            foreach (Part part in associatedParts)
+           Part part = LookupAssociatedPart(partID);
+            if(part == null)
             {
-                if (part.PartID == partID)
-                {
-                    associatedParts.Remove(part);
-                    partRemoved = true;
-                }
-                else
-                {
-                    partRemoved = false;
-                }
-
+                return false;
             }
-            return partRemoved;
+            else
+            {
+                
+                AssociatedParts.Remove(part);
+                return true;
+            }
+
+
+
+
+   
             
         }
 

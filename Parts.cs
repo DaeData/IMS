@@ -56,7 +56,7 @@ namespace Inventory_Management_System_KKellerman
         {
             Hide();
             MainScreen mainScreen = new MainScreen();
-            mainScreen.Show();
+            mainScreen.ShowDialog();
         }
 
         private void PartSave_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace Inventory_Management_System_KKellerman
             
             Hide();
             MainScreen mainScreen = new MainScreen();
-            mainScreen.Show();
+            mainScreen.ShowDialog();
         }
     }
 }

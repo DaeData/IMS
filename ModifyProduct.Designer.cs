@@ -96,7 +96,9 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgModProdAll.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgModProdAll.Location = new System.Drawing.Point(358, 73);
+            this.dgModProdAll.MultiSelect = false;
             this.dgModProdAll.Name = "dgModProdAll";
+            this.dgModProdAll.ReadOnly = true;
             this.dgModProdAll.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgModProdAll.RowHeadersVisible = false;
             this.dgModProdAll.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
@@ -113,6 +115,7 @@
             this.dgModProdAssoc.AllowUserToResizeRows = false;
             this.dgModProdAssoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgModProdAssoc.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgModProdAssoc.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dgModProdAssoc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -131,13 +134,17 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgModProdAssoc.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgModProdAssoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgModProdAssoc.Location = new System.Drawing.Point(358, 323);
+            this.dgModProdAssoc.MultiSelect = false;
             this.dgModProdAssoc.Name = "dgModProdAssoc";
+            this.dgModProdAssoc.ReadOnly = true;
             this.dgModProdAssoc.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgModProdAssoc.RowHeadersVisible = false;
-            this.dgModProdAssoc.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgModProdAssoc.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dgModProdAssoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgModProdAssoc.Size = new System.Drawing.Size(637, 150);
+            this.dgModProdAssoc.StandardTab = true;
             this.dgModProdAssoc.TabIndex = 2;
             this.dgModProdAssoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgModProdAssoc_CellContentClick);
             // 
@@ -386,8 +393,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblModTitle;
-        private System.Windows.Forms.DataGridView dgModProdAll;
-        private System.Windows.Forms.DataGridView dgModProdAssoc;
         private System.Windows.Forms.Label lblModId;
         private System.Windows.Forms.Label lblModName;
         private System.Windows.Forms.Label lblModInv;
@@ -408,5 +413,7 @@
         private System.Windows.Forms.Button btnModDelete;
         private System.Windows.Forms.Button btnModCancel;
         private System.Windows.Forms.Button btnModSave;
+        public System.Windows.Forms.DataGridView dgModProdAll;
+        public System.Windows.Forms.DataGridView dgModProdAssoc;
     }
 }

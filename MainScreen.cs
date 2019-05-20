@@ -12,16 +12,26 @@ namespace Inventory_Management_System_KKellerman
 {
     public partial class MainScreen : Form
     {
+        
         public MainScreen()
         {
-            
+
             InitializeComponent();
-            
 
+            MainScreen_Load();
+           
 
+        }
+        public void MainScreen_Load()
+        {
+             
+            BindingSource partBind = new BindingSource
+            {
+                DataSource = Inventory.AllParts
+            };
 
-            dgPartMain.DataSource = Inventory.AllParts;
-            
+            dgPartMain.DataSource = partBind;
+
             dgPartMain.Columns["PartID"].HeaderText = "Part ID";
             dgPartMain.Columns["Name"].HeaderText = "Name";
             dgPartMain.Columns["InStock"].HeaderText = "Inventory";
@@ -29,9 +39,11 @@ namespace Inventory_Management_System_KKellerman
             dgPartMain.Columns["Min"].HeaderText = "Min";
             dgPartMain.Columns["Max"].HeaderText = "Max";
 
-
-
-            dgProductMain.DataSource = Inventory.Products;
+            BindingSource prodBind = new BindingSource
+            {
+                DataSource = Inventory.Products
+            };
+            dgProductMain.DataSource = prodBind;
 
             dgProductMain.Columns["ProductID"].HeaderText = "Product ID";
             dgProductMain.Columns["Name"].HeaderText = "Name";
@@ -39,10 +51,19 @@ namespace Inventory_Management_System_KKellerman
             dgProductMain.Columns["Price"].HeaderText = "Price";
             dgProductMain.Columns["Min"].HeaderText = "Min";
             dgProductMain.Columns["Max"].HeaderText = "Max";
+
+            
+            dgPartMain.ClearSelection();
+            dgProductMain.ClearSelection();
+
+
+           
+
         }
 
 
- 
+
+
 
         private void Exit_Click(object sender, EventArgs e)
         {
@@ -52,7 +73,7 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProductAdd_Click(object sender, EventArgs e)
         {
-            
+
             Hide();
             Products prodForm = new Products();
             prodForm.ShowDialog();
@@ -62,16 +83,19 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProductModify_Click(object sender, EventArgs e)
         {
+
             Hide();
-            
             int rowIndex = dgProductMain.CurrentRow.Index;
+
             Product product = Inventory.LookupProduct(rowIndex);
             ModifyProduct modprod = new ModifyProduct();
             modprod.FillProd(product);
-            modprod.Show();
+            modprod.ShowDialog();
+
 
 
         }
+ 
 
         private void BtnProductDelete_Click(object sender, EventArgs e)
         {
@@ -98,12 +122,13 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartModify_Click(object sender, EventArgs e)
         {
+
             Hide();
             ModifyPart modpart = new ModifyPart();
             int rowIndex = dgPartMain.CurrentRow.Index;
             Part part = Inventory.LookupPart(rowIndex);
             modpart.FillBoxes(part);
-            modpart.Show();
+            modpart.ShowDialog();
 
         }
            
@@ -132,7 +157,7 @@ namespace Inventory_Management_System_KKellerman
         private void BtnPartSearch_Click(object sender, EventArgs e)
         {
             dgPartMain.ClearSelection();
-            int value = Convert.ToInt32(tbPartSearch.Text);
+            int value = int.Parse(tbPartSearch.Text);
             Inventory.LookupPart(value);
             dgPartMain.Rows[value].Selected = true;
            
@@ -141,7 +166,7 @@ namespace Inventory_Management_System_KKellerman
         private void BtnProductSearch_Click(object sender, EventArgs e)
         {
             dgProductMain.ClearSelection();
-            int value = Convert.ToInt32(tbPartSearch.Text);
+            int value = int.Parse(tbProductSearch.Text);
             Inventory.LookupProduct(value);
             dgProductMain.Rows[value].Selected = true;
         }
