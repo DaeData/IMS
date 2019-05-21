@@ -34,11 +34,13 @@ namespace Inventory_Management_System_KKellerman
             {
                 rbModOutsourced.Checked = true;
                 tbModMachineID.Text = ((Outsourced)fillPart).CompanyName;
+                lblMachineID.Text = "Company Name";
             }
             else
             {
                 rbModInHouse.Checked = true;
                 tbModMachineID.Text = ((InHouse)fillPart).MachineID.ToString();
+                lblMachineID.Text = "Machine ID";
             }
 
 

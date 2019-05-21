@@ -6,15 +6,21 @@ namespace Inventory_Management_System_KKellerman
 {
     public partial class ModifyProduct : Form
     {
-        BindingSource partToProd = new BindingSource();
-        BindingList<Part> associatedParts = new BindingList<Part>();
 
-        //MainScreen Main = (MainScreen)Application.OpenForms["MainScreen"];
+        BindingList<Part> partProd = new BindingList<Part>();
+        //BindingSource bindingSource = new BindingSource();
+
+
+
+       
 
         public ModifyProduct()
         {
             InitializeComponent();
             ModifyProduct_Load();
+           
+
+
 
 
 
@@ -22,16 +28,14 @@ namespace Inventory_Management_System_KKellerman
 
 
 
-
-
-
         public void ModifyProduct_Load()
         {
 
             dgModProdAll.DataSource = Inventory.AllParts;
+            //bindingSource.DataSource = partProd;
+            dgModProdAssoc.DataSource = partProd;
 
-            partToProd.DataSource = associatedParts;
-            dgModProdAssoc.DataSource = partToProd;
+
 
             dgModProdAssoc.Columns["PartID"].HeaderText = "Part ID";
             dgModProdAssoc.Columns["Name"].HeaderText = "Name";
@@ -40,10 +44,13 @@ namespace Inventory_Management_System_KKellerman
             dgModProdAssoc.Columns["Min"].HeaderText = "Min";
             dgModProdAssoc.Columns["Max"].HeaderText = "Max";
 
+            
 
 
+            
 
         }
+
 
 
 
@@ -60,7 +67,7 @@ namespace Inventory_Management_System_KKellerman
 
 
         }
-
+        
 
 
         private void TbModName_TextChanged(object sender, EventArgs e)
@@ -95,30 +102,43 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnModSearch_Click(object sender, EventArgs e)
         {
-
+            int value = int.Parse(tbModSearch.Text);
+            foreach (DataGridViewRow row in dgModProdAll.Rows)
+            {
+                Part part = (Part)row.DataBoundItem;
+                if (part.PartID == value)
+                {
+                    row.Selected = true;
+                }
+            }
         }
 
         private void BtnModAdd_Click(object sender, EventArgs e)
         {
-            if (dgModProdAll.SelectedRows.Count == 0)
-            {
-                return;
-            }
-            else
-            {
-                Part addPart = (Part)dgModProdAll.CurrentRow.DataBoundItem;
+            
+            Part part = (Part)dgModProdAll.CurrentRow.DataBoundItem;
+            partProd.Add(part);
 
-                associatedParts.Add(addPart);
-
-
-            }
-
+           
         }
 
         private void BtnModDelete_Click(object sender, EventArgs e)
         {
-            int delPart = dgModProdAssoc.CurrentRow.Index;
-            Product.RemoveAssociatedPart(delPart);
+            
+            foreach (DataGridViewRow row in dgModProdAll.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    Part part = (Part)row.DataBoundItem;
+                    int partID = part.PartID;
+                    partProd.Remove(part);
+                    Product.RemoveAssociatedPart(partID);
+
+
+
+                }
+
+            }
 
 
         }
@@ -132,9 +152,15 @@ namespace Inventory_Management_System_KKellerman
 
             Inventory.UpdateProduct(changeProd, prodChange);
 
+
+            foreach(Part part in partProd)
+            {
+                prodChange.AddAssociatedPart(part);
+            }
+
             Hide();
             MainScreen main = new MainScreen();
-            main.Show();
+            main.ShowDialog();
 
         }
 
@@ -142,7 +168,7 @@ namespace Inventory_Management_System_KKellerman
         private void BtnModCancel_Click(object sender, EventArgs e)
         {
 
-            Close();
+            Hide();
             MainScreen mainscreen = new MainScreen();
             mainscreen.ShowDialog();
 

@@ -19,6 +19,7 @@ namespace Inventory_Management_System_KKellerman
             InitializeComponent();
 
             MainScreen_Load();
+            
            
 
         }
@@ -38,6 +39,7 @@ namespace Inventory_Management_System_KKellerman
             dgPartMain.Columns["Price"].HeaderText = "Price";
             dgPartMain.Columns["Min"].HeaderText = "Min";
             dgPartMain.Columns["Max"].HeaderText = "Max";
+            
 
             BindingSource prodBind = new BindingSource
             {
@@ -63,8 +65,6 @@ namespace Inventory_Management_System_KKellerman
 
 
 
-
-
         private void Exit_Click(object sender, EventArgs e)
         {
 
@@ -83,14 +83,20 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProductModify_Click(object sender, EventArgs e)
         {
+            ModifyProduct modprod = new ModifyProduct();
+            foreach (DataGridViewRow row in dgProductMain.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    Product product = (Product)row.DataBoundItem;
+                    modprod.FillProd(product);
+                }
+            }
 
             Hide();
-            int rowIndex = dgProductMain.CurrentRow.Index;
-
-            Product product = Inventory.LookupProduct(rowIndex);
-            ModifyProduct modprod = new ModifyProduct();
-            modprod.FillProd(product);
+          
             modprod.ShowDialog();
+           
 
 
 
@@ -103,8 +109,9 @@ namespace Inventory_Management_System_KKellerman
             {
                 if(row.Selected == true)
                 {
-                    int selectedProduct = dgProductMain.CurrentRow.Index;
-                    Inventory.RemoveProduct(selectedProduct);
+                    Product product = (Product)row.DataBoundItem;
+                    int productID = product.ProductID;
+                    Inventory.RemoveProduct(productID);
                 }
             }
 
@@ -122,12 +129,15 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartModify_Click(object sender, EventArgs e)
         {
-
-            Hide();
             ModifyPart modpart = new ModifyPart();
-            int rowIndex = dgPartMain.CurrentRow.Index;
-            Part part = Inventory.LookupPart(rowIndex);
-            modpart.FillBoxes(part);
+            foreach (DataGridViewRow row in dgPartMain.Rows)
+            {
+                Part part = (Part)row.DataBoundItem;
+                if (row.Selected == true)
+                {
+                   modpart.FillBoxes(part);
+                }
+            }
             modpart.ShowDialog();
 
         }
@@ -135,18 +145,19 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartDelete_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dgPartMain.Rows)
+            foreach (DataGridViewRow row in dgPartMain.Rows)
             {
-                if(row.Selected == true)
+                if (row.Selected == true)
                 {
-                    int selectedRow = dgPartMain.CurrentRow.Index;
-                    Inventory.DeletePart(selectedRow);
-                   
+                    Part part = (Part)row.DataBoundItem;
+                    int partID = part.PartID;
+                    Inventory.DeletePart(partID);
+                    
                 }
-
             }
 
         }
+
 
 
         private void DgProductMain_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -156,19 +167,30 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartSearch_Click(object sender, EventArgs e)
         {
-            dgPartMain.ClearSelection();
+ 
             int value = int.Parse(tbPartSearch.Text);
-            Inventory.LookupPart(value);
-            dgPartMain.Rows[value].Selected = true;
-           
+            foreach (DataGridViewRow row in dgPartMain.Rows)
+            {
+                Part part = (Part)row.DataBoundItem;
+                if (part.PartID == value)
+                {
+                    row.Selected = true;
+                }
+            }
         }
 
         private void BtnProductSearch_Click(object sender, EventArgs e)
         {
-            dgProductMain.ClearSelection();
             int value = int.Parse(tbProductSearch.Text);
-            Inventory.LookupProduct(value);
-            dgProductMain.Rows[value].Selected = true;
+            foreach (DataGridViewRow row in dgProductMain.Rows)
+            {
+               Product product = (Product)row.DataBoundItem;
+                if (product.ProductID == value)
+                {
+                    row.Selected = true;
+                }
+            }
+
         }
 
         private void DgPartMain_CellContentClick(object sender, DataGridViewCellEventArgs e)

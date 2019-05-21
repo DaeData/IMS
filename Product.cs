@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Inventory_Management_System_KKellerman
 {
@@ -14,8 +15,13 @@ namespace Inventory_Management_System_KKellerman
         public static BindingList<Part> AssociatedParts { get { return associatedParts; } set { associatedParts = value; } }
 
 
+        private TextBox tbProductID;
+        private TextBox tbProductName;
+        private TextBox tbProductInv;
+        private TextBox tbProductPrice;
+        private TextBox tbProductMin;
+        private TextBox tbProductMax;
 
-        
         public int ProductID { get; set; }
         public string Name { get; set; }
         public int InStock { get; set; }
@@ -37,9 +43,23 @@ namespace Inventory_Management_System_KKellerman
             Max = max;
         }
 
-        public static void  AddAssociatedPart(Part part)
+        public Product(TextBox tbProductID, TextBox tbProductName, TextBox tbProductInv, TextBox tbProductPrice, TextBox tbProductMin, TextBox tbProductMax)
         {
-            AssociatedParts.Add(part);
+            this.tbProductID = tbProductID;
+            this.tbProductName = tbProductName;
+            this.tbProductInv = tbProductInv;
+            this.tbProductPrice = tbProductPrice;
+            this.tbProductMin = tbProductMin;
+            this.tbProductMax = tbProductMax;
+        }
+
+        public void  AddAssociatedPart(Part part)
+        {
+           
+
+                AssociatedParts.Add(part);
+
+            
 
         }
 
@@ -52,7 +72,7 @@ namespace Inventory_Management_System_KKellerman
             }
             else
             {
-                
+
                 AssociatedParts.Remove(part);
                 return true;
             }
@@ -68,7 +88,7 @@ namespace Inventory_Management_System_KKellerman
 
         {
 
-            foreach (Part part in associatedParts)
+            foreach (Part part in AssociatedParts)
             {
 
                 if (partID == part.PartID)
