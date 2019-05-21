@@ -74,7 +74,7 @@ namespace Inventory_Management_System_KKellerman
         private void BtnProductAdd_Click(object sender, EventArgs e)
         {
 
-            Hide();
+            Close();
             Products prodForm = new Products();
             prodForm.ShowDialog();
             
@@ -119,7 +119,7 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartAdd_Click(object sender, EventArgs e)
         {
-            Hide();
+            Close();
             Parts pScreen = new Parts();
             pScreen.ShowDialog();
            
@@ -129,6 +129,7 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartModify_Click(object sender, EventArgs e)
         {
+            Hide();
             ModifyPart modpart = new ModifyPart();
             foreach (DataGridViewRow row in dgPartMain.Rows)
             {

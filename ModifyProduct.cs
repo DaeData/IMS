@@ -26,6 +26,14 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
+        //public void Part_Load()
+        //{
+        //    int prodId = int.Parse(tbModId.Text);
+
+
+
+        //}
+
 
 
         public void ModifyProduct_Load()
