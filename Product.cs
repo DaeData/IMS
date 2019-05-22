@@ -12,16 +12,12 @@ namespace Inventory_Management_System_KKellerman
     {
         
         private static BindingList<Part> associatedParts = new BindingList<Part>();
+        
+
         public static BindingList<Part> AssociatedParts { get { return associatedParts; } set { associatedParts = value; } }
 
 
-        private TextBox tbProductID;
-        private TextBox tbProductName;
-        private TextBox tbProductInv;
-        private TextBox tbProductPrice;
-        private TextBox tbProductMin;
-        private TextBox tbProductMax;
-
+       
         public int ProductID { get; set; }
         public string Name { get; set; }
         public int InStock { get; set; }
@@ -30,11 +26,12 @@ namespace Inventory_Management_System_KKellerman
         public int Max { get; set; }
 
 
-        public Product() { }
-        public Product(int productID, string name, int inStock, decimal price, int min, int max)
-
+        public  Product() { }
+        public  Product(int productID, string name, int inStock, decimal price, int min, int max)
+           
 
         {
+            
             ProductID = productID;
             Name = name;
             InStock = inStock;
@@ -43,17 +40,7 @@ namespace Inventory_Management_System_KKellerman
             Max = max;
         }
 
-        public Product(TextBox tbProductID, TextBox tbProductName, TextBox tbProductInv, TextBox tbProductPrice, TextBox tbProductMin, TextBox tbProductMax)
-        {
-            this.tbProductID = tbProductID;
-            this.tbProductName = tbProductName;
-            this.tbProductInv = tbProductInv;
-            this.tbProductPrice = tbProductPrice;
-            this.tbProductMin = tbProductMin;
-            this.tbProductMax = tbProductMax;
-        }
-
-        public void  AddAssociatedPart(Part part)
+           public static void  AddAssociatedPart(Part part)
         {
            
 

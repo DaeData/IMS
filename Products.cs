@@ -12,7 +12,7 @@ namespace Inventory_Management_System_KKellerman
 {
     public partial class Products : Form
     {
-        BindingList<Part> parts = new BindingList<Part>();
+        BindingList<Part> partsAssoc = new BindingList<Part>();
         BindingSource partsGrid = new BindingSource();
         public Products()
         {
@@ -20,8 +20,12 @@ namespace Inventory_Management_System_KKellerman
             InitializeComponent();
 
             dgAllParts.DataSource = Inventory.AllParts;
-            partsGrid.DataSource = Product.AssociatedParts;
-            dgAssocProd.DataSource = parts;
+            //partsGrid.DataSource = Product.AssociatedParts;
+            //dgAssocProd.DataSource = parts;
+
+            partsGrid.DataSource = partsAssoc;
+            dgAssocProd.DataSource = partsGrid;
+
             dgAssocProd.Columns["PartID"].HeaderText = "Part ID";
             dgAssocProd.Columns["Name"].HeaderText = "Name";
             dgAssocProd.Columns["InStock"].HeaderText = "Inventory";
@@ -50,6 +54,18 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnAssocPartDel_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgAssocProd.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    Part part = (Part)dgAssocProd.CurrentRow.DataBoundItem;
+                    partsGrid.Remove(part);
+                    Product.RemoveAssociatedPart(part.PartID);
+
+
+                }
+
+            }
 
         }
 
@@ -79,7 +95,7 @@ namespace Inventory_Management_System_KKellerman
             else
             {
                 Part part = (Part)dgAllParts.CurrentRow.DataBoundItem;
-                parts.Add(part);
+                partsGrid.Add(part);
 
 
             }
@@ -89,12 +105,12 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnProdSave_Click(object sender, EventArgs e)
         {
-            Product products = new Product(tbProductID, tbProductName, tbProductInv, tbProductPrice, tbProductMin, tbProductMax);
             
+            Product products = new Product(Inventory.prodInc(), tbProductName.Text, int.Parse(tbProductInv.Text), decimal.Parse(tbProductPrice.Text), int.Parse(tbProductMin.Text), int.Parse(tbProductMax.Text));
             Inventory.AddProduct(products);
-            foreach(Part part in parts)
+            foreach(Part part in partsGrid)
             {
-                products.AddAssociatedPart(part);
+                Product.AddAssociatedPart(part);
             }
 
             Hide();

@@ -8,7 +8,7 @@ namespace Inventory_Management_System_KKellerman
     {
 
         BindingList<Part> partProd = new BindingList<Part>();
-        //BindingSource bindingSource = new BindingSource();
+        BindingSource bindingSource = new BindingSource();
 
 
 
@@ -26,22 +26,13 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
-        //public void Part_Load()
-        //{
-        //    int prodId = int.Parse(tbModId.Text);
-
-
-
-        //}
-
-
 
         public void ModifyProduct_Load()
         {
 
             dgModProdAll.DataSource = Inventory.AllParts;
-            //bindingSource.DataSource = partProd;
-            dgModProdAssoc.DataSource = partProd;
+            bindingSource.DataSource = partProd;
+            dgModProdAssoc.DataSource = bindingSource;
 
 
 
@@ -53,7 +44,7 @@ namespace Inventory_Management_System_KKellerman
             dgModProdAssoc.Columns["Max"].HeaderText = "Max";
 
             
-
+ 
 
             
 
@@ -72,6 +63,22 @@ namespace Inventory_Management_System_KKellerman
             tbModPrice.Text = prodPart.Price.ToString();
             tbModMax.Text = prodPart.Max.ToString();
             tbModMin.Text = prodPart.Min.ToString();
+            
+            foreach(Part part in Product.AssociatedParts)
+            {
+                int prodID = int.Parse(tbModId.Text);
+                Part partAdd = Product.LookupAssociatedPart(prodID);
+                if (partAdd !=null)
+                {
+                    
+                    bindingSource.Add(part);
+
+                }
+
+               
+                
+            }
+            
 
 
         }
@@ -124,8 +131,17 @@ namespace Inventory_Management_System_KKellerman
         private void BtnModAdd_Click(object sender, EventArgs e)
         {
             
-            Part part = (Part)dgModProdAll.CurrentRow.DataBoundItem;
-            partProd.Add(part);
+            
+           
+            foreach(DataGridViewRow row in dgModProdAll.Rows)
+            {
+                if(row.Selected == true)
+                {
+                    Part part = (Part)dgModProdAll.CurrentRow.DataBoundItem;
+                    bindingSource.Add(part);
+                }
+            }
+            
 
            
         }
@@ -137,12 +153,10 @@ namespace Inventory_Management_System_KKellerman
             {
                 if (row.Selected == true)
                 {
-                    Part part = (Part)row.DataBoundItem;
-                    int partID = part.PartID;
-                    partProd.Remove(part);
-                    Product.RemoveAssociatedPart(partID);
-
-
+                    Part part = (Part)dgModProdAssoc.CurrentRow.DataBoundItem;
+                    bindingSource.Remove(part);
+                    Product.RemoveAssociatedPart(part.PartID);
+                    
 
                 }
 
@@ -163,9 +177,10 @@ namespace Inventory_Management_System_KKellerman
 
             foreach(Part part in partProd)
             {
-                prodChange.AddAssociatedPart(part);
+                
+                Product.AddAssociatedPart(part);
             }
-
+            
             Hide();
             MainScreen main = new MainScreen();
             main.ShowDialog();

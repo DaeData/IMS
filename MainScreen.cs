@@ -74,9 +74,9 @@ namespace Inventory_Management_System_KKellerman
         private void BtnProductAdd_Click(object sender, EventArgs e)
         {
 
-            Close();
+            Hide();
             Products prodForm = new Products();
-            prodForm.ShowDialog();
+            prodForm.Show();
             
 
         }
@@ -119,12 +119,12 @@ namespace Inventory_Management_System_KKellerman
 
         private void BtnPartAdd_Click(object sender, EventArgs e)
         {
-            Close();
+            Hide();
             Parts pScreen = new Parts();
             pScreen.ShowDialog();
-           
             
-           
+
+
         }
 
         private void BtnPartModify_Click(object sender, EventArgs e)
