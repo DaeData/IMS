@@ -39,13 +39,13 @@
             this.lblModMax = new System.Windows.Forms.Label();
             this.lblModMin = new System.Windows.Forms.Label();
             this.tbModID = new System.Windows.Forms.TextBox();
-            this.tbModName = new System.Windows.Forms.TextBox();
-            this.tbModInv = new System.Windows.Forms.TextBox();
-            this.tbModCost = new System.Windows.Forms.TextBox();
-            this.tbModMachineID = new System.Windows.Forms.TextBox();
-            this.tbModMax = new System.Windows.Forms.TextBox();
-            this.tbModMin = new System.Windows.Forms.TextBox();
-            this.btnModSave = new System.Windows.Forms.Button();
+            this.tbModName = new System.Windows.Forms.MaskedTextBox();
+            this.tbModInv = new System.Windows.Forms.MaskedTextBox();
+            this.tbModCost = new System.Windows.Forms.MaskedTextBox();
+            this.tbModMachineID = new System.Windows.Forms.MaskedTextBox();
+            this.tbModMax = new System.Windows.Forms.MaskedTextBox();
+            this.tbModMin = new System.Windows.Forms.MaskedTextBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnModCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -168,17 +168,21 @@
             this.tbModName.Name = "tbModName";
             this.tbModName.Size = new System.Drawing.Size(100, 25);
             this.tbModName.TabIndex = 11;
-            this.tbModName.WordWrap = false;
             this.tbModName.TextChanged += new System.EventHandler(this.TbModName_TextChanged);
             // 
             // tbModInv
             // 
+            this.tbModInv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbModInv.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.tbModInv.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbModInv.HidePromptOnLeave = true;
+            this.tbModInv.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbModInv.Location = new System.Drawing.Point(154, 154);
             this.tbModInv.Name = "tbModInv";
+            this.tbModInv.ResetOnSpace = false;
             this.tbModInv.Size = new System.Drawing.Size(100, 25);
             this.tbModInv.TabIndex = 12;
-            this.tbModInv.WordWrap = false;
+            this.tbModInv.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.tbModInv.TextChanged += new System.EventHandler(this.TbModInv_TextChanged);
             // 
             // tbModCost
@@ -188,7 +192,6 @@
             this.tbModCost.Name = "tbModCost";
             this.tbModCost.Size = new System.Drawing.Size(100, 25);
             this.tbModCost.TabIndex = 13;
-            this.tbModCost.WordWrap = false;
             // 
             // tbModMachineID
             // 
@@ -197,7 +200,6 @@
             this.tbModMachineID.Name = "tbModMachineID";
             this.tbModMachineID.Size = new System.Drawing.Size(100, 25);
             this.tbModMachineID.TabIndex = 14;
-            this.tbModMachineID.WordWrap = false;
             this.tbModMachineID.TextChanged += new System.EventHandler(this.TbModMachineID_TextChanged);
             // 
             // tbModMax
@@ -207,8 +209,8 @@
             this.tbModMax.Name = "tbModMax";
             this.tbModMax.Size = new System.Drawing.Size(64, 25);
             this.tbModMax.TabIndex = 15;
-            this.tbModMax.WordWrap = false;
             this.tbModMax.TextChanged += new System.EventHandler(this.TbModMax_TextChanged);
+            this.tbModMax.Leave += new System.EventHandler(this.TbModMax_Leave);
             // 
             // tbModMin
             // 
@@ -217,21 +219,22 @@
             this.tbModMin.Name = "tbModMin";
             this.tbModMin.Size = new System.Drawing.Size(64, 25);
             this.tbModMin.TabIndex = 16;
-            this.tbModMin.WordWrap = false;
             this.tbModMin.TextChanged += new System.EventHandler(this.TbModMin_TextChanged);
+            this.tbModMin.Leave += new System.EventHandler(this.TbModMin_Leave);
             // 
-            // btnModSave
+            // btnSave
             // 
-            this.btnModSave.AutoSize = true;
-            this.btnModSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnModSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModSave.Location = new System.Drawing.Point(252, 323);
-            this.btnModSave.Name = "btnModSave";
-            this.btnModSave.Size = new System.Drawing.Size(45, 27);
-            this.btnModSave.TabIndex = 17;
-            this.btnModSave.Text = "Save";
-            this.btnModSave.UseVisualStyleBackColor = true;
-            this.btnModSave.Click += new System.EventHandler(this.BtnModSave_Click);
+            this.btnSave.AutoSize = true;
+            this.btnSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSave.Enabled = false;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(252, 323);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(45, 27);
+            this.btnSave.TabIndex = 17;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnModSave_Click);
             // 
             // btnModCancel
             // 
@@ -252,7 +255,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 368);
             this.Controls.Add(this.btnModCancel);
-            this.Controls.Add(this.btnModSave);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbModMin);
             this.Controls.Add(this.tbModMax);
             this.Controls.Add(this.tbModMachineID);
@@ -290,13 +293,13 @@
         private System.Windows.Forms.Label lblModMax;
         private System.Windows.Forms.Label lblModMin;
         private System.Windows.Forms.TextBox tbModID;
-        private System.Windows.Forms.TextBox tbModName;
-        private System.Windows.Forms.TextBox tbModInv;
-        private System.Windows.Forms.TextBox tbModCost;
-        private System.Windows.Forms.TextBox tbModMachineID;
-        private System.Windows.Forms.TextBox tbModMax;
-        private System.Windows.Forms.TextBox tbModMin;
-        private System.Windows.Forms.Button btnModSave;
+        private System.Windows.Forms.MaskedTextBox tbModName;
+        private System.Windows.Forms.MaskedTextBox tbModInv;
+        private System.Windows.Forms.MaskedTextBox tbModCost;
+        private System.Windows.Forms.MaskedTextBox tbModMachineID;
+        private System.Windows.Forms.MaskedTextBox tbModMax;
+        private System.Windows.Forms.MaskedTextBox tbModMin;
         private System.Windows.Forms.Button btnModCancel;
+        public System.Windows.Forms.Button btnSave;
     }
 }

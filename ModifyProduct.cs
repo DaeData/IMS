@@ -18,15 +18,70 @@ namespace Inventory_Management_System_KKellerman
         {
             InitializeComponent();
             ModifyProduct_Load();
-           
 
+            //Validate type of data entered into Textboxes.
+            tbModName.Mask = "L????????????";
+            tbModInv.ValidatingType = typeof(int);
+            tbModPrice.ValidatingType = typeof(decimal);
+            tbModMax.ValidatingType = typeof(int);
+            tbModMin.ValidatingType = typeof(int);
+            tbModName.MaskInputRejected += new MaskInputRejectedEventHandler(TbModName_MaskInputRejected);
+            tbModInv.TypeValidationCompleted += new TypeValidationEventHandler(TbModInv_TypeValidationCompleted);
+            tbModPrice.TypeValidationCompleted += new TypeValidationEventHandler(TbModCost_TypeValidationCompleted);
+            tbModMax.TypeValidationCompleted += new TypeValidationEventHandler(TbModMax_TypeValidationCompleted);
+            tbModMin.TypeValidationCompleted += new TypeValidationEventHandler(TbModMin_TypeValidationCompleted);
 
+        }
 
+        //Send user information on failed validation and clear the textbox.
+        private void TbModName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            MessageBox.Show("Please Enter a Part Name.");
+            tbModName.Clear();
 
 
         }
 
+        public void TbModInv_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Whole Number.");
+                e.Cancel = true;
+                tbModInv.Clear();
+            }
+        }
+        public void TbModCost_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Decimal Number.");
+                e.Cancel = true;
+                tbModPrice.Clear();
+            }
+        }
+        public void TbModMax_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Whole Number.");
+                e.Cancel = true;
+                tbModMax.Clear();
+            }
+        }
+        public void TbModMin_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Whole Number.");
+                e.Cancel = true;
+                tbModMin.Clear();
+            }
+        }
 
+
+
+        //Define how the data will be bound and format the data grids.
         public void ModifyProduct_Load()
         {
 
@@ -44,17 +99,42 @@ namespace Inventory_Management_System_KKellerman
             dgModProdAssoc.Columns["Max"].HeaderText = "Max";
 
             
- 
 
-            
+        }
 
+        //Validate that Max is greater than Min. If true, enable Save button.
+        private void TbModMax_Leave(object sender, EventArgs e)
+        {
+            if (int.Parse(tbModMax.Text) <= int.Parse(tbModMin.Text))
+            {
+                MessageBox.Show("Maximum Value must be greater than Minimum Value.");
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
+        }
+        //Validate that Max is greater than Min. If true, enable Save button.
+        private void TbModMin_Leave(object sender, EventArgs e)
+        {
+            if (int.Parse(tbModMax.Text) <= int.Parse(tbModMin.Text))
+            {
+                MessageBox.Show("Maximum Value must be greater than Minimum Value.");
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
         }
 
 
 
 
 
-        internal void FillProd(Product prodPart)
+    //Helper to fill the product text boxes.
+    internal void FillProd(Product prodPart)
 
         {
             tbModId.Text = prodPart.ProductID.ToString();
@@ -114,7 +194,7 @@ namespace Inventory_Management_System_KKellerman
         {
 
         }
-
+        //Search for parts.
         private void BtnModSearch_Click(object sender, EventArgs e)
         {
             int value = int.Parse(tbModSearch.Text);
@@ -127,7 +207,7 @@ namespace Inventory_Management_System_KKellerman
                 }
             }
         }
-
+        //Associate a part with a product.
         private void BtnModAdd_Click(object sender, EventArgs e)
         {
             
@@ -145,7 +225,7 @@ namespace Inventory_Management_System_KKellerman
 
            
         }
-
+        //Remove part Association with a product.
         private void BtnModDelete_Click(object sender, EventArgs e)
         {
             
@@ -164,7 +244,7 @@ namespace Inventory_Management_System_KKellerman
 
 
         }
-
+        //Save Product and return to the Main form.
         private void BtnModSave_Click(object sender, EventArgs e)
 
         {
@@ -187,7 +267,7 @@ namespace Inventory_Management_System_KKellerman
 
         }
 
-
+        //Cancel Modifying a product and return to the Main Form.
         private void BtnModCancel_Click(object sender, EventArgs e)
         {
 

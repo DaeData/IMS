@@ -37,15 +37,15 @@
             this.partCost = new System.Windows.Forms.Label();
             this.partMax = new System.Windows.Forms.Label();
             this.tbPartID = new System.Windows.Forms.TextBox();
-            this.tbPartCost = new System.Windows.Forms.TextBox();
-            this.tbPartInvenory = new System.Windows.Forms.TextBox();
-            this.tbPartName = new System.Windows.Forms.TextBox();
-            this.tbPartMax = new System.Windows.Forms.TextBox();
+            this.tbPartCost = new System.Windows.Forms.MaskedTextBox();
+            this.tbPartInvenory = new System.Windows.Forms.MaskedTextBox();
+            this.tbPartName = new System.Windows.Forms.MaskedTextBox();
+            this.tbPartMax = new System.Windows.Forms.MaskedTextBox();
             this.partMin = new System.Windows.Forms.Label();
-            this.tbPartMin = new System.Windows.Forms.TextBox();
+            this.tbPartMin = new System.Windows.Forms.MaskedTextBox();
             this.lblPartMachineID = new System.Windows.Forms.Label();
-            this.tbPartMachineId = new System.Windows.Forms.TextBox();
-            this.partSave = new System.Windows.Forms.Button();
+            this.tbPartMachineId = new System.Windows.Forms.MaskedTextBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.partCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -146,39 +146,53 @@
             // 
             // tbPartCost
             // 
-            this.tbPartCost.AcceptsTab = true;
+            this.tbPartCost.AllowPromptAsInput = false;
+            this.tbPartCost.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbPartCost.HidePromptOnLeave = true;
+            this.tbPartCost.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbPartCost.Location = new System.Drawing.Point(144, 255);
             this.tbPartCost.Name = "tbPartCost";
             this.tbPartCost.Size = new System.Drawing.Size(100, 25);
             this.tbPartCost.TabIndex = 11;
-            this.tbPartCost.WordWrap = false;
+            this.tbPartCost.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // tbPartInvenory
             // 
-            this.tbPartInvenory.AcceptsTab = true;
+            this.tbPartInvenory.AllowPromptAsInput = false;
+            this.tbPartInvenory.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbPartInvenory.HidePromptOnLeave = true;
+            this.tbPartInvenory.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbPartInvenory.Location = new System.Drawing.Point(144, 217);
             this.tbPartInvenory.Name = "tbPartInvenory";
             this.tbPartInvenory.Size = new System.Drawing.Size(100, 25);
             this.tbPartInvenory.TabIndex = 10;
-            this.tbPartInvenory.WordWrap = false;
+            this.tbPartInvenory.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // tbPartName
             // 
-            this.tbPartName.AcceptsTab = true;
+            this.tbPartName.AllowPromptAsInput = false;
+            this.tbPartName.AsciiOnly = true;
+            this.tbPartName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPartName.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbPartName.HidePromptOnLeave = true;
+            this.tbPartName.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbPartName.Location = new System.Drawing.Point(144, 180);
             this.tbPartName.Name = "tbPartName";
             this.tbPartName.Size = new System.Drawing.Size(100, 25);
             this.tbPartName.TabIndex = 9;
-            this.tbPartName.WordWrap = false;
+            this.tbPartName.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // tbPartMax
             // 
-            this.tbPartMax.AcceptsTab = true;
+            this.tbPartMax.AllowPromptAsInput = false;
+            this.tbPartMax.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbPartMax.HidePromptOnLeave = true;
+            this.tbPartMax.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbPartMax.Location = new System.Drawing.Point(144, 296);
             this.tbPartMax.Name = "tbPartMax";
             this.tbPartMax.Size = new System.Drawing.Size(100, 25);
             this.tbPartMax.TabIndex = 12;
-            this.tbPartMax.WordWrap = false;
+            this.tbPartMax.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // partMin
             // 
@@ -192,12 +206,16 @@
             // 
             // tbPartMin
             // 
-            this.tbPartMin.AcceptsTab = true;
+            this.tbPartMin.AllowPromptAsInput = false;
+            this.tbPartMin.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbPartMin.HidePromptOnLeave = true;
+            this.tbPartMin.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbPartMin.Location = new System.Drawing.Point(348, 292);
             this.tbPartMin.Name = "tbPartMin";
             this.tbPartMin.Size = new System.Drawing.Size(100, 25);
             this.tbPartMin.TabIndex = 13;
-            this.tbPartMin.WordWrap = false;
+            this.tbPartMin.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbPartMin.Leave += new System.EventHandler(this.TbPartMin_Leave);
             // 
             // lblPartMachineID
             // 
@@ -210,22 +228,26 @@
             // 
             // tbPartMachineId
             // 
-            this.tbPartMachineId.AcceptsTab = true;
+            this.tbPartMachineId.AllowPromptAsInput = false;
+            this.tbPartMachineId.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbPartMachineId.HidePromptOnLeave = true;
+            this.tbPartMachineId.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbPartMachineId.Location = new System.Drawing.Point(159, 359);
             this.tbPartMachineId.Name = "tbPartMachineId";
             this.tbPartMachineId.Size = new System.Drawing.Size(100, 25);
             this.tbPartMachineId.TabIndex = 14;
-            this.tbPartMachineId.WordWrap = false;
+            this.tbPartMachineId.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
-            // partSave
+            // btnSave
             // 
-            this.partSave.Location = new System.Drawing.Point(413, 473);
-            this.partSave.Name = "partSave";
-            this.partSave.Size = new System.Drawing.Size(75, 23);
-            this.partSave.TabIndex = 17;
-            this.partSave.Text = "Save";
-            this.partSave.UseVisualStyleBackColor = true;
-            this.partSave.Click += new System.EventHandler(this.PartSave_Click);
+            this.btnSave.Enabled = false;
+            this.btnSave.Location = new System.Drawing.Point(413, 473);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 17;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.PartSave_Click);
             // 
             // partCancel
             // 
@@ -239,11 +261,11 @@
             // 
             // Parts
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(596, 528);
             this.Controls.Add(this.partCancel);
-            this.Controls.Add(this.partSave);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbPartMachineId);
             this.Controls.Add(this.lblPartMachineID);
             this.Controls.Add(this.tbPartMin);
@@ -271,7 +293,7 @@
         }
 
         #endregion
-
+        
         private System.Windows.Forms.Label lblPart;
         private System.Windows.Forms.RadioButton rbInHouse;
         private System.Windows.Forms.RadioButton rbOutsourced;
@@ -280,16 +302,16 @@
         private System.Windows.Forms.Label partInventory;
         private System.Windows.Forms.Label partCost;
         private System.Windows.Forms.Label partMax;
-        private System.Windows.Forms.TextBox tbPartID;
-        private System.Windows.Forms.TextBox tbPartCost;
-        private System.Windows.Forms.TextBox tbPartInvenory;
-        private System.Windows.Forms.TextBox tbPartName;
-        private System.Windows.Forms.TextBox tbPartMax;
         private System.Windows.Forms.Label partMin;
-        private System.Windows.Forms.TextBox tbPartMin;
         private System.Windows.Forms.Label lblPartMachineID;
-        private System.Windows.Forms.TextBox tbPartMachineId;
-        private System.Windows.Forms.Button partSave;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button partCancel;
+        private System.Windows.Forms.TextBox tbPartID;
+        private System.Windows.Forms.MaskedTextBox tbPartMin;
+        private System.Windows.Forms.MaskedTextBox tbPartCost;
+        private System.Windows.Forms.MaskedTextBox tbPartInvenory;
+        private System.Windows.Forms.MaskedTextBox tbPartName;
+        private System.Windows.Forms.MaskedTextBox tbPartMax;
+        private System.Windows.Forms.MaskedTextBox tbPartMachineId;
     }
 }

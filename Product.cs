@@ -75,7 +75,7 @@ namespace Inventory_Management_System_KKellerman
 
         {
 
-            foreach (Part part in AssociatedParts)
+            foreach (Part part in associatedParts)
             {
 
                 if (partID == part.PartID)

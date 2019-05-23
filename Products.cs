@@ -18,10 +18,71 @@ namespace Inventory_Management_System_KKellerman
         {
             
             InitializeComponent();
+            Prod_Load();
+
+            //Validate type of data entered into Textboxes.
+            tbProductName.Mask = "L????????????";
+            tbProductInv.ValidatingType = typeof(int);
+            tbProductPrice.ValidatingType = typeof(decimal);
+            tbProductMax.ValidatingType = typeof(int);
+            tbProductMin.ValidatingType = typeof(int);
+            tbProductName.MaskInputRejected += new MaskInputRejectedEventHandler(TbProductName_MaskInputRejected);
+            tbProductInv.TypeValidationCompleted += new TypeValidationEventHandler(TbProductInv_TypeValidationCompleted);
+            tbProductPrice.TypeValidationCompleted += new TypeValidationEventHandler(TbProductPrice_TypeValidationCompleted);
+            tbProductMax.TypeValidationCompleted += new TypeValidationEventHandler(TbProductMax_TypeValidationCompleted);
+            tbProductMin.TypeValidationCompleted += new TypeValidationEventHandler(TbProductMin_TypeValidationCompleted);
+
+        }
+
+        private void TbProductName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            MessageBox.Show("Please Enter a Part Name.");
+            tbProductName.Clear();
+
+
+        }
+
+        public void TbProductInv_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Whole Number.");
+                e.Cancel = true;
+                tbProductInv.Clear();
+            }
+        }
+        public void TbProductPrice_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Decimal Number.");
+                e.Cancel = true;
+                tbProductPrice.Clear();
+            }
+        }
+        public void TbProductMax_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Whole Number.");
+                e.Cancel = true;
+                tbProductMax.Clear();
+            }
+        }
+        public void TbProductMin_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (!e.IsValidInput)
+            {
+                MessageBox.Show("Please enter a valid Whole Number.");
+                e.Cancel = true;
+                tbProductMin.Clear();
+            }
+        }
+
+        public void Prod_Load()
+        {
 
             dgAllParts.DataSource = Inventory.AllParts;
-            //partsGrid.DataSource = Product.AssociatedParts;
-            //dgAssocProd.DataSource = parts;
 
             partsGrid.DataSource = partsAssoc;
             dgAssocProd.DataSource = partsGrid;
@@ -32,7 +93,6 @@ namespace Inventory_Management_System_KKellerman
             dgAssocProd.Columns["Price"].HeaderText = "Price";
             dgAssocProd.Columns["Min"].HeaderText = "Min";
             dgAssocProd.Columns["Max"].HeaderText = "Max";
-
 
         }
 
@@ -102,13 +162,22 @@ namespace Inventory_Management_System_KKellerman
   
 
         }
-
+        //Save the New Product.
         private void BtnProdSave_Click(object sender, EventArgs e)
         {
+          if(int.Parse(tbProductMax.Text) > int.Parse(tbProductMin.Text))
+            {
+                Product products = new Product(Inventory.prodInc(), tbProductName.Text, int.Parse(tbProductInv.Text), decimal.Parse(tbProductPrice.Text), int.Parse(tbProductMin.Text), int.Parse(tbProductMax.Text));
+                Inventory.AddProduct(products);
+            }
+          else
+            {
+                MessageBox.Show("Maximum Value must be greater than Minimum Value.");
+            }
+
             
-            Product products = new Product(Inventory.prodInc(), tbProductName.Text, int.Parse(tbProductInv.Text), decimal.Parse(tbProductPrice.Text), int.Parse(tbProductMin.Text), int.Parse(tbProductMax.Text));
-            Inventory.AddProduct(products);
-            foreach(Part part in partsGrid)
+           
+            foreach(Part part in partsAssoc)
             {
                 Product.AddAssociatedPart(part);
             }
@@ -117,6 +186,33 @@ namespace Inventory_Management_System_KKellerman
             MainScreen mainScreen = new MainScreen();
             mainScreen.Show();
         }
+        //Validate that Max is greater than Min. If true, enable Save button.
+        private void TbProductMax_Leave(object sender, EventArgs e)
+        {
+            if (int.Parse(tbProductMax.Text) <= int.Parse(tbProductMin.Text))
+            {
+                MessageBox.Show("Maximum Value must be greater than Minimum Value.");
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
+        }
+        //Validate that Max is greater than Min. If true, enable Save button.
+        private void TbProductMin_Leave(object sender, EventArgs e)
+        {
+            if (int.Parse(tbProductMax.Text) <= int.Parse(tbProductMin.Text))
+            {
+                MessageBox.Show("Maximum Value must be greater than Minimum Value.");
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
+        }
+
 
 
     }

@@ -12,7 +12,8 @@ namespace Inventory_Management_System_KKellerman
 {
     public partial class MainScreen : Form
     {
-        
+       // private object btnSave;
+
         public MainScreen()
         {
 
@@ -23,6 +24,7 @@ namespace Inventory_Management_System_KKellerman
            
 
         }
+        //Define how the data will be bound and format the data grids.
         public void MainScreen_Load()
         {
              
@@ -64,13 +66,13 @@ namespace Inventory_Management_System_KKellerman
         }
 
 
-
+        //Close the Application.
         private void Exit_Click(object sender, EventArgs e)
         {
 
             Application.Exit();
         }
-
+        //Go to the add Product form.
         private void BtnProductAdd_Click(object sender, EventArgs e)
         {
 
@@ -80,7 +82,7 @@ namespace Inventory_Management_System_KKellerman
             
 
         }
-
+        //Go to the Modify Product form and load the selected row into the text boxes.
         private void BtnProductModify_Click(object sender, EventArgs e)
         {
             ModifyProduct modprod = new ModifyProduct();
@@ -102,7 +104,7 @@ namespace Inventory_Management_System_KKellerman
 
         }
  
-
+        //Delete the selected Product.
         private void BtnProductDelete_Click(object sender, EventArgs e)
         {
             foreach(DataGridViewRow row in dgProductMain.Rows)
@@ -112,11 +114,12 @@ namespace Inventory_Management_System_KKellerman
                     Product product = (Product)row.DataBoundItem;
                     int productID = product.ProductID;
                     Inventory.RemoveProduct(productID);
+
                 }
             }
 
         }
-
+        //Go to the add Part form.
         private void BtnPartAdd_Click(object sender, EventArgs e)
         {
             Hide();
@@ -126,7 +129,7 @@ namespace Inventory_Management_System_KKellerman
 
 
         }
-
+        //Go to the Modify Part form and load the selected row into the text boxes.
         private void BtnPartModify_Click(object sender, EventArgs e)
         {
             Hide();
@@ -143,7 +146,7 @@ namespace Inventory_Management_System_KKellerman
 
         }
            
-
+        //Delete the selected Part.
         private void BtnPartDelete_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgPartMain.Rows)
@@ -165,7 +168,7 @@ namespace Inventory_Management_System_KKellerman
         {
 
         }
-
+        //Part Search
         private void BtnPartSearch_Click(object sender, EventArgs e)
         {
  
@@ -179,7 +182,7 @@ namespace Inventory_Management_System_KKellerman
                 }
             }
         }
-
+        //Product Search
         private void BtnProductSearch_Click(object sender, EventArgs e)
         {
             int value = int.Parse(tbProductSearch.Text);

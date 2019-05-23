@@ -41,20 +41,20 @@
             this.lblProdPrice = new System.Windows.Forms.Label();
             this.lblProdInventory = new System.Windows.Forms.Label();
             this.lblProdName = new System.Windows.Forms.Label();
-            this.tbProductID = new System.Windows.Forms.TextBox();
-            this.tbProductName = new System.Windows.Forms.TextBox();
-            this.tbProductInv = new System.Windows.Forms.TextBox();
-            this.tbProductPrice = new System.Windows.Forms.TextBox();
-            this.tbProductMax = new System.Windows.Forms.TextBox();
-            this.tbProductMin = new System.Windows.Forms.TextBox();
+            this.tbProductID = new System.Windows.Forms.MaskedTextBox();
+            this.tbProductName = new System.Windows.Forms.MaskedTextBox();
+            this.tbProductInv = new System.Windows.Forms.MaskedTextBox();
+            this.tbProductPrice = new System.Windows.Forms.MaskedTextBox();
+            this.tbProductMax = new System.Windows.Forms.MaskedTextBox();
+            this.tbProductMin = new System.Windows.Forms.MaskedTextBox();
             this.dgAllParts = new System.Windows.Forms.DataGridView();
             this.lblAllCandParts = new System.Windows.Forms.Label();
             this.btnAllSearch = new System.Windows.Forms.Button();
-            this.tbAllSearch = new System.Windows.Forms.TextBox();
+            this.tbAllSearch = new System.Windows.Forms.MaskedTextBox();
             this.dgAssocProd = new System.Windows.Forms.DataGridView();
             this.lblPartAssocProd = new System.Windows.Forms.Label();
             this.btnCandidateAdd = new System.Windows.Forms.Button();
-            this.btnProdSave = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnAssocPartDel = new System.Windows.Forms.Button();
             this.btnProductCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgAllParts)).BeginInit();
@@ -141,19 +141,26 @@
             // 
             // tbProductName
             // 
+            this.tbProductName.HidePromptOnLeave = true;
+            this.tbProductName.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbProductName.Location = new System.Drawing.Point(97, 213);
             this.tbProductName.Name = "tbProductName";
+            this.tbProductName.ResetOnSpace = false;
             this.tbProductName.Size = new System.Drawing.Size(100, 25);
             this.tbProductName.TabIndex = 8;
-            this.tbProductName.WordWrap = false;
+            this.tbProductName.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // tbProductInv
             // 
+            this.tbProductInv.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.tbProductInv.HidePromptOnLeave = true;
+            this.tbProductInv.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert;
             this.tbProductInv.Location = new System.Drawing.Point(97, 256);
             this.tbProductInv.Name = "tbProductInv";
+            this.tbProductInv.ResetOnSpace = false;
             this.tbProductInv.Size = new System.Drawing.Size(100, 25);
             this.tbProductInv.TabIndex = 9;
-            this.tbProductInv.WordWrap = false;
+            this.tbProductInv.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // tbProductPrice
             // 
@@ -161,7 +168,6 @@
             this.tbProductPrice.Name = "tbProductPrice";
             this.tbProductPrice.Size = new System.Drawing.Size(100, 25);
             this.tbProductPrice.TabIndex = 10;
-            this.tbProductPrice.WordWrap = false;
             // 
             // tbProductMax
             // 
@@ -169,7 +175,6 @@
             this.tbProductMax.Name = "tbProductMax";
             this.tbProductMax.Size = new System.Drawing.Size(100, 25);
             this.tbProductMax.TabIndex = 11;
-            this.tbProductMax.WordWrap = false;
             // 
             // tbProductMin
             // 
@@ -177,7 +182,6 @@
             this.tbProductMin.Name = "tbProductMin";
             this.tbProductMin.Size = new System.Drawing.Size(100, 25);
             this.tbProductMin.TabIndex = 12;
-            this.tbProductMin.WordWrap = false;
             // 
             // dgAllParts
             // 
@@ -264,7 +268,6 @@
             this.tbAllSearch.Name = "tbAllSearch";
             this.tbAllSearch.Size = new System.Drawing.Size(203, 25);
             this.tbAllSearch.TabIndex = 16;
-            this.tbAllSearch.WordWrap = false;
             // 
             // dgAssocProd
             // 
@@ -322,15 +325,16 @@
             this.btnCandidateAdd.UseVisualStyleBackColor = true;
             this.btnCandidateAdd.Click += new System.EventHandler(this.BtnCandidateAdd_Click);
             // 
-            // btnProdSave
+            // btnSave
             // 
-            this.btnProdSave.Location = new System.Drawing.Point(840, 606);
-            this.btnProdSave.Name = "btnProdSave";
-            this.btnProdSave.Size = new System.Drawing.Size(75, 23);
-            this.btnProdSave.TabIndex = 20;
-            this.btnProdSave.Text = "Save";
-            this.btnProdSave.UseVisualStyleBackColor = true;
-            this.btnProdSave.Click += new System.EventHandler(this.BtnProdSave_Click);
+            this.btnSave.Enabled = false;
+            this.btnSave.Location = new System.Drawing.Point(840, 606);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 20;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnProdSave_Click);
             // 
             // btnAssocPartDel
             // 
@@ -359,7 +363,7 @@
             this.ClientSize = new System.Drawing.Size(1025, 661);
             this.Controls.Add(this.btnProductCancel);
             this.Controls.Add(this.btnAssocPartDel);
-            this.Controls.Add(this.btnProdSave);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCandidateAdd);
             this.Controls.Add(this.lblPartAssocProd);
             this.Controls.Add(this.dgAssocProd);
@@ -400,20 +404,20 @@
         private System.Windows.Forms.Label lblProdPrice;
         private System.Windows.Forms.Label lblProdInventory;
         private System.Windows.Forms.Label lblProdName;
-        private System.Windows.Forms.TextBox tbProductID;
-        private System.Windows.Forms.TextBox tbProductName;
-        private System.Windows.Forms.TextBox tbProductInv;
-        private System.Windows.Forms.TextBox tbProductPrice;
-        private System.Windows.Forms.TextBox tbProductMax;
-        private System.Windows.Forms.TextBox tbProductMin;
+        private System.Windows.Forms.MaskedTextBox tbProductID;
+        private System.Windows.Forms.MaskedTextBox tbProductName;
+        private System.Windows.Forms.MaskedTextBox tbProductInv;
+        private System.Windows.Forms.MaskedTextBox tbProductPrice;
+        private System.Windows.Forms.MaskedTextBox tbProductMax;
+        private System.Windows.Forms.MaskedTextBox tbProductMin;
         private System.Windows.Forms.DataGridView dgAllParts;
         private System.Windows.Forms.Label lblAllCandParts;
         private System.Windows.Forms.Button btnAllSearch;
-        private System.Windows.Forms.TextBox tbAllSearch;
+        private System.Windows.Forms.MaskedTextBox tbAllSearch;
         private System.Windows.Forms.DataGridView dgAssocProd;
         private System.Windows.Forms.Label lblPartAssocProd;
         private System.Windows.Forms.Button btnCandidateAdd;
-        private System.Windows.Forms.Button btnProdSave;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAssocPartDel;
         private System.Windows.Forms.Button btnProductCancel;
     }
