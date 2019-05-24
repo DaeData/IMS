@@ -34,7 +34,7 @@ namespace Inventory_Management_System_KKellerman
         //Validate that Max is greater than Min. If true, enable Save button.
         private void TbPartMin_Leave(object sender, EventArgs e)
         {
-            if (int.Parse(tbPartMax.Text) <= int.Parse(tbPartMin.Text))
+            if (int.Parse(tbPartMax.Text) < int.Parse(tbPartMin.Text))
             {
                 MessageBox.Show("Maximum Value must be greater than Minimum Value.");
 
@@ -48,7 +48,7 @@ namespace Inventory_Management_System_KKellerman
         //Validate that Max is greater than Min. If true, enable Save button.
         private void TbPartMax_Leave(object sender, EventArgs e)
         {
-            if (int.Parse(tbPartMax.Text) <= int.Parse(tbPartMin.Text))
+            if (int.Parse(tbPartMax.Text) < int.Parse(tbPartMin.Text))
             {
                 MessageBox.Show("Maximum Value must be greater than Minimum Value.");
 

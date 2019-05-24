@@ -175,6 +175,7 @@
             this.tbProductMax.Name = "tbProductMax";
             this.tbProductMax.Size = new System.Drawing.Size(100, 25);
             this.tbProductMax.TabIndex = 11;
+            this.tbProductMax.Leave += new System.EventHandler(this.TbProductMax_Leave);
             // 
             // tbProductMin
             // 
@@ -182,6 +183,7 @@
             this.tbProductMin.Name = "tbProductMin";
             this.tbProductMin.Size = new System.Drawing.Size(100, 25);
             this.tbProductMin.TabIndex = 12;
+            this.tbProductMin.Leave += new System.EventHandler(this.TbProductMin_Leave);
             // 
             // dgAllParts
             // 
@@ -348,6 +350,7 @@
             // 
             // btnProductCancel
             // 
+            this.btnProductCancel.CausesValidation = false;
             this.btnProductCancel.Location = new System.Drawing.Point(921, 606);
             this.btnProductCancel.Name = "btnProductCancel";
             this.btnProductCancel.Size = new System.Drawing.Size(75, 23);

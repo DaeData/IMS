@@ -251,6 +251,7 @@
             // 
             // partCancel
             // 
+            this.partCancel.CausesValidation = false;
             this.partCancel.Location = new System.Drawing.Point(494, 473);
             this.partCancel.Name = "partCancel";
             this.partCancel.Size = new System.Drawing.Size(75, 23);

@@ -1,4 +1,6 @@
-﻿namespace Inventory_Management_System_KKellerman
+﻿using System;
+
+namespace Inventory_Management_System_KKellerman
 {
     partial class ModifyPart
     {
@@ -163,11 +165,14 @@
             // 
             // tbModName
             // 
+            this.tbModName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbModName.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.tbModName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbModName.Location = new System.Drawing.Point(154, 120);
             this.tbModName.Name = "tbModName";
             this.tbModName.Size = new System.Drawing.Size(100, 25);
             this.tbModName.TabIndex = 11;
+            this.tbModName.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.tbModName.TextChanged += new System.EventHandler(this.TbModName_TextChanged);
             // 
             // tbModInv
@@ -183,7 +188,6 @@
             this.tbModInv.Size = new System.Drawing.Size(100, 25);
             this.tbModInv.TabIndex = 12;
             this.tbModInv.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.tbModInv.TextChanged += new System.EventHandler(this.TbModInv_TextChanged);
             // 
             // tbModCost
             // 
@@ -200,7 +204,6 @@
             this.tbModMachineID.Name = "tbModMachineID";
             this.tbModMachineID.Size = new System.Drawing.Size(100, 25);
             this.tbModMachineID.TabIndex = 14;
-            this.tbModMachineID.TextChanged += new System.EventHandler(this.TbModMachineID_TextChanged);
             // 
             // tbModMax
             // 
@@ -209,8 +212,8 @@
             this.tbModMax.Name = "tbModMax";
             this.tbModMax.Size = new System.Drawing.Size(64, 25);
             this.tbModMax.TabIndex = 15;
-            this.tbModMax.TextChanged += new System.EventHandler(this.TbModMax_TextChanged);
             this.tbModMax.Leave += new System.EventHandler(this.TbModMax_Leave);
+            this.tbModMax.LostFocus += new System.EventHandler(this.TbModMax_LostFocus);
             // 
             // tbModMin
             // 
@@ -219,8 +222,8 @@
             this.tbModMin.Name = "tbModMin";
             this.tbModMin.Size = new System.Drawing.Size(64, 25);
             this.tbModMin.TabIndex = 16;
-            this.tbModMin.TextChanged += new System.EventHandler(this.TbModMin_TextChanged);
             this.tbModMin.Leave += new System.EventHandler(this.TbModMin_Leave);
+            this.tbModMin.LostFocus += new System.EventHandler(this.TbModMin_LostFocus);
             // 
             // btnSave
             // 
@@ -240,6 +243,7 @@
             // 
             this.btnModCancel.AutoSize = true;
             this.btnModCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnModCancel.CausesValidation = false;
             this.btnModCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModCancel.Location = new System.Drawing.Point(313, 323);
             this.btnModCancel.Name = "btnModCancel";
@@ -279,6 +283,8 @@
             this.PerformLayout();
 
         }
+
+
 
         #endregion
 

@@ -240,7 +240,6 @@
             this.tbModInv.Size = new System.Drawing.Size(100, 25);
             this.tbModInv.TabIndex = 11;
             this.tbModInv.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.tbModInv.TextChanged += new System.EventHandler(this.TbModInv_TextChanged);
             // 
             // tbModPrice
             // 
@@ -258,7 +257,7 @@
             this.tbModMax.Name = "tbModMax";
             this.tbModMax.Size = new System.Drawing.Size(69, 25);
             this.tbModMax.TabIndex = 13;
-            this.tbModMax.TextChanged += new System.EventHandler(this.TbModMax_TextChanged);
+            this.tbModMax.Leave += new System.EventHandler(this.TbModMax_Leave);
             // 
             // tbModMin
             // 
@@ -268,6 +267,7 @@
             this.tbModMin.Size = new System.Drawing.Size(69, 25);
             this.tbModMin.TabIndex = 14;
             this.tbModMin.TextChanged += new System.EventHandler(this.TbModMin_TextChanged);
+            this.tbModMin.Leave += new System.EventHandler(this.TbModMin_Leave);
             // 
             // lblCandPart
             // 
@@ -334,6 +334,7 @@
             // 
             // btnModCancel
             // 
+            this.btnModCancel.CausesValidation = false;
             this.btnModCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModCancel.Location = new System.Drawing.Point(919, 520);
             this.btnModCancel.Name = "btnModCancel";

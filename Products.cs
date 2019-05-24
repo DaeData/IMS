@@ -13,7 +13,7 @@ namespace Inventory_Management_System_KKellerman
     public partial class Products : Form
     {
         BindingList<Part> partsAssoc = new BindingList<Part>();
-        BindingSource partsGrid = new BindingSource();
+        private BindingSource partsGrid = new BindingSource();
         public Products()
         {
             
@@ -31,11 +31,12 @@ namespace Inventory_Management_System_KKellerman
             tbProductPrice.TypeValidationCompleted += new TypeValidationEventHandler(TbProductPrice_TypeValidationCompleted);
             tbProductMax.TypeValidationCompleted += new TypeValidationEventHandler(TbProductMax_TypeValidationCompleted);
             tbProductMin.TypeValidationCompleted += new TypeValidationEventHandler(TbProductMin_TypeValidationCompleted);
-
+            
         }
 
         private void TbProductName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
+           
             MessageBox.Show("Please Enter a Part Name.");
             tbProductName.Clear();
 
@@ -95,7 +96,19 @@ namespace Inventory_Management_System_KKellerman
             dgAssocProd.Columns["Max"].HeaderText = "Max";
 
         }
+        public  bool CheckStuff()
+        {
+            if (Controls.OfType<TextBox>().Any(tbox => string.IsNullOrEmpty(tbox.Text)))
+            {
+                MessageBox.Show("Please fill all fields");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
+        }
 
         private void BtnProductCancel_Click(object sender, EventArgs e)
         {
@@ -132,14 +145,24 @@ namespace Inventory_Management_System_KKellerman
  
         private void BtnAllSearch_Click(object sender, EventArgs e)
         {
-            int value = int.Parse(tbAllSearch.Text);
-            foreach (DataGridViewRow row in dgAllParts.Rows)
+            int value;
+            bool isNumber = int.TryParse(tbAllSearch.Text, out value);
+            if (isNumber)
             {
-               Part part = (Part)row.DataBoundItem;
-                if (part.PartID == value)
+
+                foreach (DataGridViewRow row in dgAllParts.Rows)
                 {
-                    row.Selected = true;
+                    Part part = (Part)row.DataBoundItem;
+                    if (part.PartID == value)
+                    {
+                        row.Selected = true;
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please enter PartId to Search");
+                tbAllSearch.Clear();
             }
 
 
@@ -186,10 +209,16 @@ namespace Inventory_Management_System_KKellerman
             MainScreen mainScreen = new MainScreen();
             mainScreen.Show();
         }
-        //Validate that Max is greater than Min. If true, enable Save button.
+
+
+        //Validate that Max is greater than Min.If true, enable Save button.
         private void TbProductMax_Leave(object sender, EventArgs e)
         {
-            if (int.Parse(tbProductMax.Text) <= int.Parse(tbProductMin.Text))
+            if (!(CheckStuff()))
+            {
+                return;
+            }
+            else if (int.Parse(tbProductMax.Text) <= int.Parse(tbProductMin.Text))
             {
                 MessageBox.Show("Maximum Value must be greater than Minimum Value.");
 
@@ -202,7 +231,7 @@ namespace Inventory_Management_System_KKellerman
         //Validate that Max is greater than Min. If true, enable Save button.
         private void TbProductMin_Leave(object sender, EventArgs e)
         {
-            if (int.Parse(tbProductMax.Text) <= int.Parse(tbProductMin.Text))
+            if (int.Parse(tbProductMax.Text) < int.Parse(tbProductMin.Text))
             {
                 MessageBox.Show("Maximum Value must be greater than Minimum Value.");
 

@@ -92,13 +92,16 @@ namespace Inventory_Management_System_KKellerman
                 {
                     Product product = (Product)row.DataBoundItem;
                     modprod.FillProd(product);
+                    
                 }
             }
 
             Hide();
-          
-            modprod.ShowDialog();
            
+
+            modprod.ShowDialog();
+
+
 
 
 
@@ -171,28 +174,49 @@ namespace Inventory_Management_System_KKellerman
         //Part Search
         private void BtnPartSearch_Click(object sender, EventArgs e)
         {
- 
-            int value = int.Parse(tbPartSearch.Text);
-            foreach (DataGridViewRow row in dgPartMain.Rows)
+            int value;
+            bool isNumber = int.TryParse(tbPartSearch.Text, out value);
+            if (isNumber)
             {
-                Part part = (Part)row.DataBoundItem;
-                if (part.PartID == value)
+
+                foreach (DataGridViewRow row in dgPartMain.Rows)
                 {
-                    row.Selected = true;
+                    Part part = (Part)row.DataBoundItem;
+                    if (part.PartID == value)
+                    {
+                        row.Selected = true;
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please enter PartId to Search");
+                tbPartSearch.Clear();
             }
         }
         //Product Search
         private void BtnProductSearch_Click(object sender, EventArgs e)
         {
-            int value = int.Parse(tbProductSearch.Text);
-            foreach (DataGridViewRow row in dgProductMain.Rows)
+            int value;
+            bool isNumber =  int.TryParse(tbProductSearch.Text, out value);
+            if (isNumber)
             {
-               Product product = (Product)row.DataBoundItem;
-                if (product.ProductID == value)
+
+
+                foreach (DataGridViewRow row in dgProductMain.Rows)
                 {
-                    row.Selected = true;
+                    Product product = (Product)row.DataBoundItem;
+                    if (product.ProductID == value)
+                    {
+                        row.Selected = true;
+                    }
                 }
+
+            }
+            else
+            {
+                MessageBox.Show("Please enter Product ID to Search");
+                tbProductSearch.Clear();
             }
 
         }

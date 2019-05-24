@@ -17,24 +17,27 @@ namespace Inventory_Management_System_KKellerman
             InitializeComponent();
 
             //Validate type of data entered into Textboxes.
-            tbModName.Mask = "L????????????";
+            tbModName.Mask = "L??????????????????";
             tbModInv.ValidatingType = typeof(int);
             tbModCost.ValidatingType = typeof(decimal);
             tbModMax.ValidatingType = typeof(int);
             tbModMin.ValidatingType = typeof(int);
             tbModName.MaskInputRejected += new MaskInputRejectedEventHandler(TbModName_MaskInputRejected);
             tbModInv.TypeValidationCompleted += new TypeValidationEventHandler(TbModInv_TypeValidationCompleted);
-            tbModCost.TypeValidationCompleted += new TypeValidationEventHandler(tbModCost_TypeValidationCompleted);
+            tbModCost.TypeValidationCompleted += new TypeValidationEventHandler(TbModCost_TypeValidationCompleted);
             tbModMax.TypeValidationCompleted += new TypeValidationEventHandler(tbModMax_TypeValidationCompleted);
             tbModMin.TypeValidationCompleted += new TypeValidationEventHandler(tbModMin_TypeValidationCompleted);
 
 
         }
 
+        
+
         //Send user information on failed validation and clear the textbox.
         private void TbModName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
             MessageBox.Show("Please Enter a Part Name.");
+            
             tbModName.Clear();
 
 
@@ -49,7 +52,7 @@ namespace Inventory_Management_System_KKellerman
                 tbModInv.Clear();
             }
         }
-        public void tbModCost_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        public void TbModCost_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
         {
             if (!e.IsValidInput)
             {
@@ -202,7 +205,7 @@ namespace Inventory_Management_System_KKellerman
         //Validate that Max is greater than Min. If true, enable Save button.
         private void TbModMax_Leave(object sender, EventArgs e)
         {
-            if (int.Parse(tbModMax.Text) <= int.Parse(tbModMin.Text))
+            if (int.Parse(tbModMax.Text) < int.Parse(tbModMin.Text))
             {
                 MessageBox.Show("Maximum Value must be greater than Minimum Value.");
 
@@ -215,7 +218,20 @@ namespace Inventory_Management_System_KKellerman
         //Validate that Max is greater than Min. If true, enable Save button.
         private void TbModMin_Leave(object sender, EventArgs e)
         {
-            if (int.Parse(tbModMax.Text) <= int.Parse(tbModMin.Text))
+            if (int.Parse(tbModMax.Text) < int.Parse(tbModMin.Text))
+            {
+                MessageBox.Show("Maximum Value must be greater than Minimum Value.");
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
+
+        }
+        private void TbModMax_LostFocus(object sender, EventArgs e)
+        {
+            if (int.Parse(tbModMax.Text) < int.Parse(tbModMin.Text))
             {
                 MessageBox.Show("Maximum Value must be greater than Minimum Value.");
 
@@ -225,6 +241,21 @@ namespace Inventory_Management_System_KKellerman
                 btnSave.Enabled = true;
             }
         }
+
+        private void TbModMin_LostFocus(object sender, EventArgs e)
+        {
+            if (int.Parse(tbModMax.Text) < int.Parse(tbModMin.Text))
+            {
+                MessageBox.Show("Maximum Value must be greater than Minimum Value.");
+
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
+        }
+
+
     }
 
 }
